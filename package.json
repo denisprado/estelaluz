@@ -6,21 +6,42 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "types": "payload generate:types",
+		"generate:types": "payload generate:types"
+  },
+	"engines": {
+    "node": "^18.20.2 || >=20.9.0"
   },
   "dependencies": {
-    "react": "^18",
-    "react-dom": "^18",
-    "next": "14.2.3"
+    
+    "@swc/core": "^1.5.25",
+    "flowbite": "^2.3.0",
+    "flowbite-react": "^0.9.0",
+    "formidable": "^3.5.1",
+		"@payloadcms/db-postgres": "3.0.0-beta.45",
+    "@payloadcms/next": "3.0.0-beta.45",
+    "@payloadcms/richtext-lexical": "3.0.0-beta.45",
+    "@payloadcms/richtext-slate": "3.0.0-beta.45",
+    "@payloadcms/ui": "3.0.0-beta.45",
+    "babel-plugin-react-compiler": "^0.0.0-experimental-592953e-20240517",
+    "cross-env": "^7.0.3",
+    "graphql": "^16.8.1",
+    "next": "15.0.0-rc.0",
+    "payload": "3.0.0-beta.45",
+    "react": "19.0.0-rc-f994737d14-20240522",
+    "react-dom": "19.0.0-rc-f994737d14-20240522",
+    "sharp": "0.32.6"
   },
   "devDependencies": {
-    "typescript": "^5",
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+		"@types/node": "^20.12.12",
+    "@types/react": "npm:types-react@19.0.0-beta.2",
+    "@types/react-dom": "npm:types-react-dom@19.0.0-beta.2",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "14.2.3",
+    "typescript": "^5.4.5",
     "postcss": "^8",
-    "tailwindcss": "^3.4.1",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.3"
+    "tailwindcss": "^3.4.1"
+    
   }
 }
