@@ -15,6 +15,7 @@ export const Media: CollectionConfig = {
   ],
   upload: {
     staticDir: "public",
+
     imageSizes: [
       {
         name: "thumbnail",

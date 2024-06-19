@@ -31,7 +31,6 @@ async function getData(cat: number) {
 }
 
 export default buildConfig({
-  serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL,
   cors: "*",
   csrf: [process.env.PAYLOAD_PUBLIC_SERVER_URL || ""].filter(Boolean),
   admin: {
