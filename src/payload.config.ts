@@ -2,7 +2,6 @@
 import { postgresAdapter } from "@payloadcms/db-postgres";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import path from "path";
-import { buildConfig } from "payload/config";
 import { fileURLToPath } from "url";
 import sharp from "sharp";
 
@@ -12,6 +11,7 @@ import { Work } from "./collections/Work";
 import { CategoryWork } from "./collections/CategoryWork";
 import { getPayloadHMR } from "@payloadcms/next/utilities";
 import configPromise from "@payload-config";
+import { buildConfig } from "payload";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
