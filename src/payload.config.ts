@@ -4,6 +4,7 @@ import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import path from "path";
 import { fileURLToPath } from "url";
 import sharp from "sharp";
+import { pt } from "payload/i18n/pt";
 
 import { Users } from "./collections/Users";
 import { Media } from "./collections/Media";
@@ -66,6 +67,7 @@ export default buildConfig({
   typescript: {
     outputFile: path.resolve(dirname, "payload-types.ts"),
   },
+  i18n: { supportedLanguages: { pt } },
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URI || "",

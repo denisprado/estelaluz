@@ -49,7 +49,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
 						return (
 							<div className="embla__slide" key={slide?.id!!}>
 								<div className="embla__slide__number">
-									<Image src={src!} className="rounded-3xl w-full" fill style={{ objectFit: 'cover' }} alt={slide?.caption!}></Image>
+									<Image src={process.env.NEXT_PUBLIC_SERVER_URL + src!} className="rounded-3xl w-full" fill style={{ objectFit: 'cover' }} alt={slide?.caption!}></Image>
 								</div>
 							</div>
 						)

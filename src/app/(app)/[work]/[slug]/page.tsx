@@ -29,11 +29,11 @@ export default async function Work({ params }: { params: { slug: string } }) {
 	console.log(gallery)
 	return (
 		<div className="md:max-w-7xl flex flex-col self-center items-start justify-start w-full ">
-			<div className="flex justify-center w-full min-h-96 p-14  mt-8">
+			<div className="flex justify-center w-full min-h-96 p-7  mt-8">
 				{gallery && <EmblaCarousel slides={gallery} />}
 				{/* <Image src={gallery?.url} className="rounded-3xl" fill style={{ objectFit: 'cover' }} alt={work.image.alt}></Image> */}
 			</div>
-			<div className="flex justify-center w-full p-14">
+			<div className="flex justify-center w-full p-7">
 				<p className="text-5xl">{work?.title as string}</p>
 			</div>
 			<div className="flex justify-center w-full p-14 gap-8">
