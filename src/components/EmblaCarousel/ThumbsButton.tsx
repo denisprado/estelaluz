@@ -21,7 +21,7 @@ export const Thumb: React.FC<PropType> = (props) => {
 				type="button"
 				className="embla-thumbs__slide__number"
 			>
-				<Image src={process.env.NEXT_PUBLIC_SERVER_URL + src!} className="rounded-3xl w-full" fill style={{ objectFit: 'cover' }} alt={'Image'}></Image>
+				<Image src={src!} className="rounded-3xl w-full" fill style={{ objectFit: 'cover' }} alt={'Image'}></Image>
 			</button>
 		</div>
 	)
