@@ -19,7 +19,7 @@ async function getworks(cat: string) {
 	return works.docs
 }
 
-export function getThumbSrc(work: WorkType) {
+function getThumbSrc(work: WorkType) {
 	const gallery = work.gallery
 	console.log(gallery)
 	if (!gallery) return (null)
