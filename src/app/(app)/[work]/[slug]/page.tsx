@@ -2,6 +2,8 @@ import { getPayloadHMR } from "@payloadcms/next/utilities"
 import configPromise from '@payload-config'
 import Image from "next/image"
 import Link from "next/link"
+import { Media } from "@/collections/Media"
+import EmblaCarousel from "@/components/EmblaCarousel"
 
 export default async function Work({ params }: { params: { slug: string } }) {
 
@@ -23,11 +25,13 @@ export default async function Work({ params }: { params: { slug: string } }) {
 	console.log(data)
 
 	const work = data[0]
-
+	const gallery = work.gallery
+	console.log(gallery)
 	return (
 		<div className="md:max-w-7xl flex flex-col self-center items-start justify-start w-full ">
-			<div className="flex justify-center w-full min-h-96 p-14 relative mt-8">
-				<Image src={work.image?.url} className="rounded-3xl" fill style={{ objectFit: 'cover' }} alt={work.image.alt}></Image>
+			<div className="flex justify-center w-full min-h-96 p-14  mt-8">
+				{gallery && <EmblaCarousel slides={gallery} />}
+				{/* <Image src={gallery?.url} className="rounded-3xl" fill style={{ objectFit: 'cover' }} alt={work.image.alt}></Image> */}
 			</div>
 			<div className="flex justify-center w-full p-14">
 				<p className="text-5xl">{work?.title as string}</p>
@@ -41,14 +45,14 @@ export default async function Work({ params }: { params: { slug: string } }) {
 			</div>
 			<div className="md:max-w-7xl flex flex-col self-center items-start justify-center w-full">
 				<div className="flex justify-center  w-full  p-14">
-					<p className="text-3xl">Outros Trabalhos na Categoria {work.category?.title}</p>
+					<p className="text-3xl">Outros Trabalhos na Categoria {typeof work.category !== 'number' ? work.category?.title : ''}</p>
 				</div>
 				<div className="min-h-screen w-full ">
 					<div className="grid grid-cols-12 p-4 gap-4 w-full flex-wrap">
 						{data.map(doc => {
 							return (
 								<div className="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 h-28" key={doc.id}>
-									<Link href={doc.slug}><Image src={doc.image.thumbnailURL as string} width={300} height={100} alt={doc.title as string} className="rounded-3xl"></Image></Link>
+									{/* <Link href={doc.slug}><Image src={doc.image.thumbnailURL as string} width={300} height={100} alt={doc.title as string} className="rounded-3xl"></Image></Link> */}
 									<Link href={doc.slug}>{doc.title as string}</Link>
 								</div>
 							)

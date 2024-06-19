@@ -44,7 +44,7 @@ export default async function Header() {
 					<ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
 						{data.map(cat => {
 							return (
-								<li>
+								<li key={cat.id}>
 									<a href={`/${cat.slug}`} className="hover:outline-2 hover:outline-offset-2 hover:outline-black transition duration-1000 block py-2 px-3 text-white bg-black rounded md:bg-transparent md:text-gray-700 md:p-0 md:dark:text-gray-500" aria-current="page">{cat.title.toLowerCase()}</a>
 								</li>
 							)

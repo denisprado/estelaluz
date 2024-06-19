@@ -1,4 +1,3 @@
-import BulkUpload from "@/components/BulkUpload/exportBulkAsClient";
 import type { CollectionConfig } from "payload/types";
 
 export const Work: CollectionConfig = {
@@ -24,15 +23,6 @@ export const Work: CollectionConfig = {
       required: true,
     },
     {
-      name: "image",
-      type: "upload",
-      required: true,
-      relationTo: "media",
-      filterOptions: {
-        mimeType: { contains: "image" },
-      },
-    },
-    {
       name: "gallery",
       type: "array",
       fields: [
@@ -42,7 +32,18 @@ export const Work: CollectionConfig = {
           relationTo: "media",
           required: true,
         },
+        {
+          name: "caption",
+          type: "text",
+        },
       ],
+      admin: {
+        components: {
+          RowLabel: ({ data, index }) => {
+            return data?.title || `Imagem ${String(index).padStart(2, "0")}`;
+          },
+        },
+      },
     },
     {
       name: "coordenadas",

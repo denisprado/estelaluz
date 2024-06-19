@@ -31,7 +31,7 @@ export default async function Work({ params }: { params: { work: string } }) {
 					{data.map(doc => {
 						return (
 							<div className="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 h-28" key={doc.id}>
-								<Link href={params.work + '/' + doc.slug}><Image src={doc.image.thumbnailURL as string} width={300} height={100} alt={doc.title as string} className="rounded-3xl"></Image></Link>
+								{/* <Link href={params.work + '/' + doc.slug}><Image src={doc.image.thumbnailURL as string} width={300} height={100} alt={doc.title as string} className="rounded-3xl"></Image></Link> */}
 								<Link href={params.work + '/' + doc.slug}>{doc.title as string}</Link>
 							</div>
 						)

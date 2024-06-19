@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Montserrat_Alternates } from "next/font/google";
 import "./globals.css";
+import "./embla.css";
 import Header from "@/components/Header";
 
 const montserrat = Montserrat_Alternates({

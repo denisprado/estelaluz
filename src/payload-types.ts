@@ -47,10 +47,10 @@ export interface Work {
   title: string;
   slug: string;
   description: string;
-  image: number | Media;
   gallery?:
     | {
         image: number | Media;
+        caption?: string | null;
         id?: string | null;
       }[]
     | null;
