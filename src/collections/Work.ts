@@ -32,10 +32,6 @@ export const Work: CollectionConfig = {
           relationTo: "media",
           required: true,
         },
-        {
-          name: "caption",
-          type: "text",
-        },
       ],
       admin: {
         components: {
