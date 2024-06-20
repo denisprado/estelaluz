@@ -50,7 +50,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
 							<div className="embla__slide" key={slide?.id!!}>
 								<div className="embla__slide__number">
 									{/* <Image src={src!} className="rounded-3xl w-full" fill style={{ objectFit: 'cover' }} alt={slide?.caption!}></Image> */}
-									{<div className={`bg-[('/media${src}')] bg-no-repeat`} />}
+									{<img src={`${process.env.NEXT_PUBLIC_SERVER_URL}${src}`}></img>}
 								</div>
 							</div>
 						)
@@ -58,7 +58,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
 				</div>
 			</div>
 
-			<div className="embla-thumbs">
+			{slides!.length > 1 && <div className="embla-thumbs">
 				<div className="embla-thumbs__viewport" ref={emblaThumbsRef}>
 					<div className="embla-thumbs__container">
 						{slides!.map((slide, i) => {
@@ -75,7 +75,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
 						})}
 					</div>
 				</div>
-			</div>
+			</div>}
 		</div>
 	)
 }
