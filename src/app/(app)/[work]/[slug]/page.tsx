@@ -23,7 +23,7 @@ export default async function Work({ params }: { params: { slug: string } }) {
 			};
 		}
 
-		const data = await payload.find({
+		const data = await payload.find<'work'>({
 			collection: 'work',
 			where: where,
 		});
