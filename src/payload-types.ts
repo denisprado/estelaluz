@@ -10,6 +10,7 @@ export interface Config {
   collections: {
     users: User;
     work: Work;
+    courses: Course;
     categoryWork: CategoryWork;
     media: Media;
     'payload-preferences': PayloadPreference;
@@ -50,7 +51,6 @@ export interface Work {
   gallery?:
     | {
         image: number | Media;
-        caption?: string | null;
         id?: string | null;
       }[]
     | null;
@@ -116,6 +116,19 @@ export interface CategoryWork {
   title: string;
   slug: string;
   description?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "courses".
+ */
+export interface Course {
+  id: number;
+  title: string;
+  url: string;
+  description?: string | null;
+  color: string;
   updatedAt: string;
   createdAt: string;
 }

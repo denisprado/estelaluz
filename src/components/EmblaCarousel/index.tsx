@@ -6,12 +6,12 @@ import { Thumb } from './ThumbsButton'
 import { Work } from '@/payload-types'
 import Image from 'next/image'
 type PropType = {
-	slides: Work['gallery']
+	gallery: Work['gallery']
 	options?: EmblaOptionsType
 }
 
 const EmblaCarousel: React.FC<PropType> = (props) => {
-	const { slides, options } = props
+	const { gallery, options } = props
 	const [selectedIndex, setSelectedIndex] = useState(0)
 	const [emblaMainRef, emblaMainApi] = useEmblaCarousel(options)
 	const [emblaThumbsRef, emblaThumbsApi] = useEmblaCarousel({
@@ -44,13 +44,12 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
 		<div className="embla">
 			<div className="embla__viewport" ref={emblaMainRef}>
 				<div className="embla__container">
-					{slides!?.map((slide) => {
+					{gallery!?.map((slide) => {
 						const src = typeof slide.image !== 'number' ? slide.image.url : ''
 						return (
 							<div className="embla__slide" key={slide?.id!!}>
 								<div className="embla__slide__number">
-									{/* <Image src={src!} className="rounded-3xl w-full" fill style={{ objectFit: 'cover' }} alt={slide?.caption!}></Image> */}
-									{<img src={`${process.env.NEXT_PUBLIC_SERVER_URL}${src}`}></img>}
+									<Image src={src!} className="rounded-3xl w-full" fill style={{ objectFit: 'cover' }} alt={""}></Image>
 								</div>
 							</div>
 						)
@@ -58,10 +57,10 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
 				</div>
 			</div>
 
-			{slides!.length > 1 && <div className="embla-thumbs">
+			{gallery!.length > 1 && <div className="embla-thumbs">
 				<div className="embla-thumbs__viewport" ref={emblaThumbsRef}>
 					<div className="embla-thumbs__container">
-						{slides!.map((slide, i) => {
+						{gallery!.map((slide, i) => {
 							const src = typeof slide.image !== 'number' ? slide.image.thumbnailURL : ''
 							return (
 								<Thumb

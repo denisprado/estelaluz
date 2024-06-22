@@ -3,10 +3,9 @@ import Link from "next/link";
 import { getPayloadHMR } from '@payloadcms/next/utilities'
 import configPromise from '@payload-config'
 import Image from "next/image";
-import { CategoryWork } from "@/collections/CategoryWork";
 import { Work as WorkType } from "@/payload-types";
 
-async function getworks(cat: string) {
+async function getworks(cat: string): Promise<WorkType[]> {
 	const payload = await getPayloadHMR({ config: configPromise })
 	const works = await payload.find({
 		collection: 'work',
@@ -16,18 +15,16 @@ async function getworks(cat: string) {
 			}
 		},
 	})
-	return works.docs
+	return works.docs as unknown as WorkType[]
 }
 
 function getThumbSrc(work: WorkType) {
 	const gallery = work.gallery
-	console.log(gallery)
 	if (!gallery) return (null)
 	const image = gallery[0].image
 	const src = typeof image !== 'number' ? image.thumbnailURL : '/media/'
 	return src
 }
-
 
 export default async function Work({ params }: { params: { work: string } }) {
 	const works = await getworks(params.work)

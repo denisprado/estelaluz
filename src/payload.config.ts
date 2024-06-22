@@ -2,17 +2,18 @@
 import { postgresAdapter } from "@payloadcms/db-postgres";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import path from "path";
-import { fileURLToPath } from "url";
-import sharp from "sharp";
 import { pt } from "payload/i18n/pt";
 
-import { Users } from "./collections/Users";
-import { Media } from "./collections/Media";
-import { Work } from "./collections/Work";
-import { CategoryWork } from "./collections/CategoryWork";
-import { getPayloadHMR } from "@payloadcms/next/utilities";
+import { fileURLToPath } from "url";
+
 import configPromise from "@payload-config";
+import { getPayloadHMR } from "@payloadcms/next/utilities";
 import { buildConfig } from "payload";
+import { CategoryWork } from "./collections/CategoryWork";
+import { Courses } from "./collections/Courses";
+import { Media } from "./collections/Media";
+import { Users } from "./collections/Users";
+import { Work } from "./collections/Work";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -63,7 +64,7 @@ export default buildConfig({
       collections: ["work"],
     },
   },
-  collections: [Users, Work, CategoryWork, Media],
+  collections: [Users, Work, Courses, CategoryWork, Media],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
@@ -75,7 +76,7 @@ export default buildConfig({
       connectionString: process.env.DATABASE_URI || "",
     },
   }),
-  sharp,
+
   plugins: [
     // storage-adapter-placeholder
   ],

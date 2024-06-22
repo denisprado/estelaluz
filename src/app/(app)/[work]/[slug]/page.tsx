@@ -1,65 +1,107 @@
-import { getPayloadHMR } from "@payloadcms/next/utilities"
-import configPromise from '@payload-config'
-import Image from "next/image"
-import Link from "next/link"
-import { Media } from "@/collections/Media"
-import EmblaCarousel from "@/components/EmblaCarousel"
+import EmblaCarousel from "@/components/EmblaCarousel";
+import { Work as WorkType } from "@/payload-types";
+import configPromise from '@payload-config';
+import { getPayloadHMR } from "@payloadcms/next/utilities";
+import Image from "next/image";
+import Link from "next/link";
 
 export default async function Work({ params }: { params: { slug: string } }) {
 
+	async function getData(slug: string | null, excludeWorkId?: number | null): Promise<WorkType[]> {
+		const payload = await getPayloadHMR({ config: configPromise });
+		const where: any = {};
 
-	async function getData(slug: string | null) {
-		const payload = await getPayloadHMR({ config: configPromise })
+		if (excludeWorkId === undefined || excludeWorkId === null) {
+			where.slug = {
+				equals: slug ?? '',
+			};
+		}
+
+		if (excludeWorkId !== undefined && excludeWorkId !== null) {
+			where.id = {
+				not_equals: excludeWorkId,
+			};
+		}
+
 		const data = await payload.find({
 			collection: 'work',
-			where: {
-				slug: {
-					equals: slug ?? '',
-				}
-			},
-		})
-		return data.docs
+			where: where,
+		});
+
+		return data.docs as unknown as WorkType[];
 	}
 
-	const data = await getData(params.slug)
-	console.log(data)
+	function getThumbSrc(work: WorkType) {
+		const gallery = work.gallery;
+		if (!gallery) return null;
+		const image = gallery[0].image;
+		const src = typeof image !== 'number' ? image.thumbnailURL : '/media/';
+		return src;
+	}
 
-	const work = data[0]
-	const gallery = work.gallery
-	console.log(gallery)
+	const allWorks = await getData(params.slug);
+
+	// Função de guarda de tipo para coordenadas
+	const hasCoordinates = (coordenadas: any): coordenadas is { latitude: string; longitude: string } => {
+		return coordenadas && typeof coordenadas.latitude === 'string' && typeof coordenadas.longitude === 'string';
+	}
+
 	return (
-		<div className="md:max-w-7xl flex flex-col self-center items-start justify-start w-full ">
-			<div className="flex justify-center w-full min-h-96 p-7  mt-8">
-				{gallery && <EmblaCarousel slides={gallery} />}
-				{/* <Image src={gallery?.url} className="rounded-3xl" fill style={{ objectFit: 'cover' }} alt={work.image.alt}></Image> */}
-			</div>
-			<div className="flex justify-center w-full p-7">
-				<p className="text-5xl">{work?.title as string}</p>
-			</div>
-			<div className="flex justify-center w-full p-14 gap-8">
-				<p className="text-base w-full">{work?.description as string}</p>
-				{work.coordenadas?.latitude && work.coordenadas?.longitude && <div className=" w-full border-2 rounded-lg p-4">
+		<div>
 
-					<iframe src={`https://www.google.com/maps/embed/v1/streetview?key=AIzaSyBFQ2XvHhidZ5rCrKnJ9GZMzldlkTUsRKQ&location=${work.coordenadas?.longitude},${work.coordenadas?.latitude}&heading=161&pitch=10&fov=35&`} width="600" height="450" allowFullScreen={true} loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
-				</div>}
-			</div>
-			<div className="md:max-w-7xl flex flex-col self-center items-start justify-center w-full">
-				<div className="flex justify-center  w-full  p-14">
-					<p className="text-3xl">Outros Trabalhos na Categoria {typeof work.category !== 'number' ? work.category?.title : ''}</p>
-				</div>
-				<div className="min-h-screen w-full ">
-					<div className="grid grid-cols-12 p-4 gap-4 w-full flex-wrap">
-						{data.map(doc => {
-							return (
-								<div className="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 h-28" key={doc.id}>
-									{/* <Link href={doc.slug}><Image src={doc.image.thumbnailURL as string} width={300} height={100} alt={doc.title as string} className="rounded-3xl"></Image></Link> */}
-									<Link href={doc.slug}>{doc.title as string}</Link>
+			{allWorks.map(async (work: any) => {
+				const { title, description, category } = work as WorkType;
+
+				const id = work?.id ? work?.id as number : null;
+				const allWorksExceptThis: WorkType[] = await getData(params.slug, id);
+				const gallery: WorkType['gallery'] = work?.gallery as WorkType['gallery'];
+
+				return (
+					<div key={work.id} className="md:max-w-7xl flex flex-col self-center items-start justify-start w-full">
+						<div className="flex justify-center w-full min-h-96 p-4 mt-8">
+							<EmblaCarousel gallery={gallery} />
+						</div>
+						<div className="flex justify-center w-full p-8 mt-4">
+							<p className="text-5xl">{title}</p>
+						</div>
+						<div className="flex justify-center w-full p-8 gap-8">
+							<p className="text-base w-full">{description}</p>
+							{hasCoordinates(work?.coordenadas) && (
+								<div className="w-full border-2 rounded-lg p-2">
+									<iframe
+										src={`https://www.google.com/maps/embed/v1/streetview?key=AIzaSyBFQ2XvHhidZ5rCrKnJ9GZMzldlkTUsRKQ&location=${work?.coordenadas?.longitude!},${work?.coordenadas?.latitude!}&heading=161&pitch=10&fov=35&`}
+										width="600"
+										height="450"
+										allowFullScreen={true}
+										loading="lazy"
+										referrerPolicy="no-referrer-when-downgrade"
+									></iframe>
 								</div>
-							)
-						})}
+							)}
+						</div>
+						{allWorksExceptThis.length > 0 && (
+							<div className="md:max-w-7xl flex flex-col self-center items-start justify-center w-full">
+								<div className="flex justify-center w-full p-14 divide-x-4">
+									<p className="text-3xl">Outros Trabalhos na Categoria {typeof category !== 'number' ? category?.title! : ''}</p>
+								</div>
+								<div className="min-h-screen w-full">
+									<div className="grid grid-cols-12 p-4 gap-4 w-full flex-wrap">
+										{allWorksExceptThis.map((doc) => {
+											const src = getThumbSrc(doc);
+											return (
+												<div className="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 h-28" key={doc.id}>
+													<Link href={doc.slug}><Image src={src!} width={300} height={100} alt={doc.title} className="rounded-3xl" /></Link>
+													<Link href={doc.slug}>{doc.title}</Link>
+												</div>
+											);
+										})}
+									</div>
+								</div>
+							</div>
+						)}
 					</div>
-				</div>
-			</div>
+				);
+			})}
 		</div>
-	)
+	);
 }
