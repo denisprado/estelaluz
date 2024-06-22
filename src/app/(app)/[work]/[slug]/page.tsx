@@ -47,7 +47,7 @@ export default async function Work({ params }: { params: { slug: string } }) {
 	}
 
 	return (
-		<div>
+		<>
 
 			{allWorks.map(async (work: any) => {
 				const { title, description, category } = work as WorkType;
@@ -102,6 +102,6 @@ export default async function Work({ params }: { params: { slug: string } }) {
 					</div>
 				);
 			})}
-		</div>
+		</>
 	);
 }

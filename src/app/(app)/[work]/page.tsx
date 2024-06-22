@@ -31,7 +31,9 @@ export default async function Work({ params }: { params: { work: string } }) {
 	return (
 		<div className="md:max-w-7xl flex flex-col self-center items-start justify-center w-full">
 			<div className="flex justify-center  w-full  p-14">
-				<p className="text-5xl">{params.work}</p>
+				<p className="text-5xl">
+					{params.work}
+				</p>
 			</div>
 			<div className="min-h-screen w-full ">
 				<div className="grid grid-cols-12 p-4 gap-4 w-full flex-wrap">
@@ -39,7 +41,9 @@ export default async function Work({ params }: { params: { work: string } }) {
 						const src = getThumbSrc(work)
 						return (
 							src && <div className="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 h-28" key={work.id}>
-								<Link href={params.work + '/' + work.slug}><Image src={src!} width={300} height={100} alt={work.title} className="rounded-3xl"></Image></Link>
+								<Link href={params.work + '/' + work.slug}>
+									<Image src={src!} width={300} height={100} alt={work.title} className="rounded-3xl"></Image>
+								</Link>
 								<Link href={params.work + '/' + work.slug}>{work.title}</Link>
 							</div>
 						)
