@@ -19,14 +19,15 @@ async function getworks(cat: string): Promise<WorkType[]> {
 }
 
 function getThumbSrc(work: WorkType) {
-	const gallery = work.gallery
+	const gallery = work.gallery!
 	if (!gallery) return (null)
 	const image = gallery[0].image
-	const src = typeof image !== 'number' ? image.thumbnailURL : '/media/'
+	const src = typeof image !== 'number' ? "/" + image.filename : '/media/'
 	return src
 }
 
 export default async function Work({ params }: { params: { work: string } }) {
+	console.log(params)
 	const works = await getworks(params.work)
 	return (
 		<div className="md:max-w-7xl flex flex-col self-center items-start justify-center w-full">
@@ -40,7 +41,7 @@ export default async function Work({ params }: { params: { work: string } }) {
 					{works && works!?.map((work: WorkType) => {
 						const src = getThumbSrc(work)
 						return (
-							src && <div className="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 h-28" key={work.id}>
+							src! && <div className="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 h-28" key={work.id}>
 								<Link href={params.work + '/' + work.slug}>
 									<Image src={src!} width={300} height={100} alt={work.title} className="rounded-3xl"></Image>
 								</Link>

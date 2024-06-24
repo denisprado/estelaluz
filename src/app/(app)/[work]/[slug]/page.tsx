@@ -35,7 +35,7 @@ export default async function Work({ params }: { params: { slug: string } }) {
 		const gallery = work.gallery;
 		if (!gallery) return null;
 		const image = gallery[0].image;
-		const src = typeof image !== 'number' ? image.thumbnailURL : '/media/';
+		const src = typeof image !== 'number' ? "/" + image.filename : '/media/';
 		return src;
 	}
 
