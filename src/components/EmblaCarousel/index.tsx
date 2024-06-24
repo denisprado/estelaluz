@@ -6,6 +6,7 @@ import { Thumb } from './ThumbsButton'
 import { Work } from '@/payload-types'
 import Image from 'next/image'
 import { getUrl } from '@/helpers/functions'
+import imageLoader from '@/helpers/loader'
 type PropType = {
 	gallery: Work['gallery']
 	options?: EmblaOptionsType
@@ -50,7 +51,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
 						return (
 							<div className="embla__slide" key={slide?.id!!}>
 								<div className="embla__slide__number">
-									<Image loader={() => src} src={src!} className="rounded-3xl w-full" fill style={{ objectFit: 'cover' }} alt={""}></Image>
+									<Image loader={imageLoader} src={src!} className="rounded-3xl w-full" fill style={{ objectFit: 'cover' }} alt={""}></Image>
 								</div>
 							</div>
 						)

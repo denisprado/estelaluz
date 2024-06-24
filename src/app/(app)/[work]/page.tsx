@@ -5,6 +5,7 @@ import configPromise from '@payload-config'
 import Image from "next/image";
 import { Work as WorkType } from "@/payload-types";
 import { getUrl } from "@/helpers/functions";
+import imageLoader from "@/helpers/loader";
 
 async function getworks(cat: string): Promise<WorkType[]> {
 	const payload = await getPayloadHMR({ config: configPromise })
@@ -44,7 +45,7 @@ export default async function Work({ params }: { params: { work: string } }) {
 						return (
 							src! && <div className="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 h-28" key={work.id}>
 								<Link href={params.work + '/' + work.slug}>
-									<Image loader={() => src} src={src!} width={300} height={100} alt={work.title} className="rounded-3xl"></Image>
+									<Image loader={imageLoader} src={src!} width={300} height={100} alt={work.title} className="rounded-3xl"></Image>
 								</Link>
 								<Link href={params.work + '/' + work.slug}>{work.title}</Link>
 							</div>

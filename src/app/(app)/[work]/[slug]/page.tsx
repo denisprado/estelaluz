@@ -1,5 +1,6 @@
 import EmblaCarousel from "@/components/EmblaCarousel";
 import { getUrl } from "@/helpers/functions";
+import imageLoader from "@/helpers/loader";
 import { Work as WorkType } from "@/payload-types";
 import configPromise from '@payload-config';
 import { getPayloadHMR } from "@payloadcms/next/utilities";
@@ -94,7 +95,8 @@ export default async function Work({ params }: { params: { slug: string } }) {
 												const src = getThumbSrc(doc);
 												return (
 													<div className="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 h-28" key={doc.id}>
-														<Link href={doc.slug}><Image loader={() => src!} src={src!} width={300} height={100} alt={doc.title} className="rounded-3xl" /></Link>
+														<Link href={doc.slug}>
+															<Image loader={(imageLoader)} src={src!} width={300} height={100} alt={doc.title} className="rounded-3xl" /></Link>
 														<Link href={doc.slug}>{doc.title}</Link>
 													</div>
 												);
