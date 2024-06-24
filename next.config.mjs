@@ -6,22 +6,22 @@ const nextConfig = {
 	// experimental: {
 	// 	reactCompiler: false
 	// },
-	// images: {
-	// 	remotePatterns: [
-	// 		{
-	// 			protocol: 'https',
-	// 			hostname: 'estelaluz.vercel.app',
-	// 			port: '',
-	// 			pathname: '/**',
-	// 		},
-	// 		{
-	// 			protocol: 'http',
-	// 			hostname: 'localhost',
-	// 			port: '3000',
-	// 			pathname: '/**',
-	// 		},
-	// 	],
-	// },
+	images: {
+		remotePatterns: [
+			{
+				protocol: 'https',
+				hostname: 's3.amazonaws.com',
+				port: '',
+				pathname: '/estelaluz/**',
+			},
+			{
+				protocol: 'http',
+				hostname: 'localhost',
+				port: '3000',
+				pathname: '/**',
+			},
+		],
+	},
 }
 
 export default withPayload(nextConfig)
