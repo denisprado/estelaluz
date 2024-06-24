@@ -50,7 +50,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
 						return (
 							<div className="embla__slide" key={slide?.id!!}>
 								<div className="embla__slide__number">
-									<Image src={src!} className="rounded-3xl w-full" fill style={{ objectFit: 'cover' }} alt={""}></Image>
+									<Image loader={() => src} src={src!} className="rounded-3xl w-full" fill style={{ objectFit: 'cover' }} alt={""}></Image>
 								</div>
 							</div>
 						)
