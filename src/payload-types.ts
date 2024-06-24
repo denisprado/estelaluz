@@ -13,13 +13,13 @@ export interface Config {
     courses: Course;
     categoryWork: CategoryWork;
     media: Media;
-    "payload-preferences": PayloadPreference;
-    "payload-migrations": PayloadMigration;
+    'payload-preferences': PayloadPreference;
+    'payload-migrations': PayloadMigration;
   };
   globals: {};
   locale: null;
   user: User & {
-    collection: "users";
+    collection: 'users';
   };
 }
 /**
@@ -139,7 +139,7 @@ export interface Course {
 export interface PayloadPreference {
   id: number;
   user: {
-    relationTo: "users";
+    relationTo: 'users';
     value: number | User;
   };
   key?: string | null;
