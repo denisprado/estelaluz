@@ -4,6 +4,7 @@ import { getPayloadHMR } from '@payloadcms/next/utilities'
 import configPromise from '@payload-config'
 import Image from "next/image";
 import { Work as WorkType } from "@/payload-types";
+import { getUrl } from "@/helpers/functions";
 
 async function getworks(cat: string): Promise<WorkType[]> {
 	const payload = await getPayloadHMR({ config: configPromise })
@@ -22,8 +23,8 @@ function getThumbSrc(work: WorkType) {
 	const gallery = work.gallery!
 	if (!gallery) return (null)
 	const image = gallery[0].image
-	const src = typeof image !== 'number' ? process.env.PAYLOAD_PUBLIC_SERVER_URL! + image.url! : '/media/'
-	return src
+	const src = getUrl(image)
+	return src;
 }
 
 export default async function Work({ params }: { params: { work: string } }) {

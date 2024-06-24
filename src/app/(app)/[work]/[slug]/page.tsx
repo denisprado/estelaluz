@@ -1,4 +1,5 @@
 import EmblaCarousel from "@/components/EmblaCarousel";
+import { getUrl } from "@/helpers/functions";
 import { Work as WorkType } from "@/payload-types";
 import configPromise from '@payload-config';
 import { getPayloadHMR } from "@payloadcms/next/utilities";
@@ -36,7 +37,7 @@ export default async function Work({ params }: { params: { slug: string } }) {
 		if (!gallery) return null;
 		const image = gallery[0].image;
 		console.log(gallery)
-		const src = typeof image !== 'number' ? process.env.PAYLOAD_PUBLIC_SERVER_URL! + image.url! : '/media/';
+		const src = getUrl(image)
 		return src;
 	}
 
@@ -76,31 +77,34 @@ export default async function Work({ params }: { params: { slug: string } }) {
 										allowFullScreen={true}
 										loading="lazy"
 										referrerPolicy="no-referrer-when-downgrade"
-									></iframe>
-								</div>
-							)}
-						</div>
-						{allWorksExceptThis.length > 0 && (
-							<div className="md:max-w-7xl flex flex-col self-center items-start justify-center w-full">
-								<div className="flex justify-center w-full p-14 divide-x-4">
-									<p className="text-3xl">Outros Trabalhos na Categoria {typeof category !== 'number' ? category?.title! : ''}</p>
-								</div>
-								<div className="min-h-screen w-full">
-									<div className="grid grid-cols-12 p-4 gap-4 w-full flex-wrap">
-										{allWorksExceptThis.map((doc) => {
-											const src = getThumbSrc(doc);
-											return (
-												<div className="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 h-28" key={doc.id}>
-													<Link href={doc.slug}><Image src={src!} width={300} height={100} alt={doc.title} className="rounded-3xl" /></Link>
-													<Link href={doc.slug}>{doc.title}</Link>
-												</div>
-											);
-										})}
+									></iframe >
+								</div >
+							)
+							}
+						</div >
+						{
+							allWorksExceptThis.length > 0 && (
+								<div className="md:max-w-7xl flex flex-col self-center items-start justify-center w-full">
+									<div className="flex justify-center w-full p-14 divide-x-4">
+										<p className="text-3xl">Outros Trabalhos na Categoria {typeof category !== 'number' ? category?.title! : ''}</p>
+									</div>
+									<div className="min-h-screen w-full">
+										<div className="grid grid-cols-12 p-4 gap-4 w-full flex-wrap">
+											{allWorksExceptThis.map((doc) => {
+												const src = getThumbSrc(doc);
+												return (
+													<div className="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 h-28" key={doc.id}>
+														<Link href={doc.slug}><Image src={src!} width={300} height={100} alt={doc.title} className="rounded-3xl" /></Link>
+														<Link href={doc.slug}>{doc.title}</Link>
+													</div>
+												);
+											})}
+										</div>
 									</div>
 								</div>
-							</div>
-						)}
-					</div>
+							)
+						}
+					</div >
 				);
 			})}
 		</>

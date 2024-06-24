@@ -5,6 +5,7 @@ import useEmblaCarousel from 'embla-carousel-react'
 import { Thumb } from './ThumbsButton'
 import { Work } from '@/payload-types'
 import Image from 'next/image'
+import { getUrl } from '@/helpers/functions'
 type PropType = {
 	gallery: Work['gallery']
 	options?: EmblaOptionsType
@@ -45,7 +46,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
 			<div className="embla__viewport" ref={emblaMainRef}>
 				<div className="embla__container">
 					{gallery!?.map((slide) => {
-						const src = typeof slide.image !== 'number' ? slide.image.url : ''
+						const src = getUrl(slide.image)
 						return (
 							<div className="embla__slide" key={slide?.id!!}>
 								<div className="embla__slide__number">
@@ -61,7 +62,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
 				<div className="embla-thumbs__viewport" ref={emblaThumbsRef}>
 					<div className="embla-thumbs__container">
 						{gallery!.map((slide, i) => {
-							const src = typeof slide.image !== 'number' ? slide.image.thumbnailURL : ''
+							const src = getUrl(slide.image)
 							return (
 								<Thumb
 									key={slide!.id}

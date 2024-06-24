@@ -12,7 +12,7 @@ const nextConfig = {
 				protocol: 'https',
 				hostname: 's3.amazonaws.com',
 				port: '',
-				pathname: '/estelaluz/**',
+				pathname: "/estelaluz/**",
 			},
 			{
 				protocol: 'http',
