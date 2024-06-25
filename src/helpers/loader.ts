@@ -2,7 +2,7 @@
 
 import { ImageLoaderProps } from "next/image";
 
-const imageLoader = ({ src, width = 0, quality = 0 }: ImageLoaderProps) => {
+const imageLoader = ({ src, width = 1000, quality = 0 }: ImageLoaderProps) => {
   return src;
 };
 

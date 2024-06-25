@@ -9,10 +9,12 @@
 export interface Config {
   collections: {
     users: User;
-    work: Work;
+    works: Work;
     courses: Course;
     categoryWork: CategoryWork;
     media: Media;
+    products: Product;
+    categoryProduct: CategoryProduct;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -41,13 +43,14 @@ export interface User {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "work".
+ * via the `definition` "works".
  */
 export interface Work {
   id: number;
   title: string;
-  slug: string;
+  slug?: string | null;
   description: string;
+  technical_description: string;
   gallery?:
     | {
         image: number | Media;
@@ -125,10 +128,46 @@ export interface CategoryWork {
  */
 export interface Course {
   id: number;
+  slug?: string | null;
   title: string;
   url: string;
   description?: string | null;
   color: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "products".
+ */
+export interface Product {
+  id: number;
+  title: string;
+  slug?: string | null;
+  description: string;
+  technical_description?: string | null;
+  price?: number | null;
+  stock?: number | null;
+  product_category: (number | CategoryProduct)[];
+  work_product?: (number | Work)[] | null;
+  gallery?:
+    | {
+        image: number | Media;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "categoryProduct".
+ */
+export interface CategoryProduct {
+  id: number;
+  title: string;
+  slug?: string | null;
+  description?: string | null;
   updatedAt: string;
   createdAt: string;
 }

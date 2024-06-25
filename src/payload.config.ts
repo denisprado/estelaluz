@@ -3,13 +3,21 @@ import { postgresAdapter } from "@payloadcms/db-postgres";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import path from "path";
 import { pt } from "payload/i18n/pt";
-
+import sharp from "sharp";
 import { fileURLToPath } from "url";
 
 import configPromise from "@payload-config";
 import { getPayloadHMR } from "@payloadcms/next/utilities";
 import { buildConfig } from "payload";
-import { CategoryWork, Courses, Media, Users, Work } from "./collections";
+import {
+  CategoryProduct,
+  CategoryWork,
+  Courses,
+  Media,
+  Products,
+  Users,
+  Works,
+} from "./collections";
 import { s3Storage } from "@payloadcms/storage-s3";
 
 const filename = fileURLToPath(import.meta.url);
@@ -61,7 +69,15 @@ export default buildConfig({
       collections: ["work"],
     },
   },
-  collections: [Users, Work, Courses, CategoryWork, Media],
+  collections: [
+    Users,
+    Works,
+    Courses,
+    CategoryWork,
+    Media,
+    Products,
+    CategoryProduct,
+  ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
@@ -74,7 +90,7 @@ export default buildConfig({
       connectionString: process.env.DATABASE_URI || "",
     },
   }),
-
+  sharp,
   plugins: [
     s3Storage({
       collections: {

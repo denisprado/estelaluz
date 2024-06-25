@@ -10,7 +10,7 @@ import imageLoader from "@/helpers/loader";
 async function getworks(cat: string): Promise<WorkType[]> {
 	const payload = await getPayloadHMR({ config: configPromise })
 	const works = await payload.find({
-		collection: 'work',
+		collection: 'works',
 		where: {
 			'category.slug': {
 				equals: cat ?? '',
@@ -22,20 +22,18 @@ async function getworks(cat: string): Promise<WorkType[]> {
 
 function getThumbSrc(work: WorkType) {
 	const gallery = work.gallery!
-	if (!gallery) return (null)
 	const image = gallery[0].image
 	const src = getUrl(image)
 	return src;
 }
 
 export default async function Work({ params }: { params: { work: string } }) {
-	console.log(params)
 	const works = await getworks(params.work)
 	return (
 		<div className="md:max-w-7xl flex flex-col self-center items-start justify-center w-full">
 			<div className="flex justify-center  w-full  p-14">
 				<p className="text-5xl">
-					{params.work}
+					{params.work!.toUpperCase()}
 				</p>
 			</div>
 			<div className="min-h-screen w-full ">
@@ -43,16 +41,17 @@ export default async function Work({ params }: { params: { work: string } }) {
 					{works && works!?.map((work: WorkType) => {
 						const src = getThumbSrc(work)
 						return (
-							src! && <div className="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 h-28" key={work.id}>
-								<Link href={params.work + '/' + work.slug} className="relative w-full h-full overflow-hidden">
-									<Image loader={imageLoader} src={src!} alt={work.title!} className="rounded-3xl" fill style={{ objectFit: 'cover' }}></Image>
-								</Link>
-								<Link href={params.work + '/' + work.slug}>{work.title}</Link>
-							</div>
+							src! && <Link href={params.work! + '/' + work.slug!} className="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 flex flex-col gap-2">
+								<div className="w-full h-[300px] relative overflow-hidden " key={work.id!}>
+									<Image src={src!} alt={work.title!} className="rounded-3xl w-full h-full" fill style={{ objectFit: 'cover' }}>
+									</Image>
+								</div>
+								<div>{work.title!}</div>
+							</Link>
 						)
 					})}
 				</div>
 			</div>
-		</div>
+		</div >
 	)
 }

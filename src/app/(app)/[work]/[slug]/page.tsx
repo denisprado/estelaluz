@@ -25,8 +25,8 @@ export default async function Work({ params }: { params: { slug: string } }) {
 			};
 		}
 
-		const data = await payload.find<'work'>({
-			collection: 'work',
+		const data = await payload.find<'works'>({
+			collection: 'works',
 			where: where,
 		});
 
@@ -51,10 +51,9 @@ export default async function Work({ params }: { params: { slug: string } }) {
 
 	return (
 		<>
-
 			{allWorks.map(async (work: any) => {
 				const { title, description, category } = work as WorkType;
-
+				console.log(title, category)
 				const id = work?.id ? work?.id as number : null;
 				const allWorksExceptThis: WorkType[] = await getData(params.slug, id);
 				const gallery: WorkType['gallery'] = work?.gallery as WorkType['gallery'];
@@ -64,8 +63,8 @@ export default async function Work({ params }: { params: { slug: string } }) {
 						<div className="flex justify-center w-full min-h-96 p-4 mt-8">
 							<EmblaCarousel gallery={gallery} />
 						</div>
-						<div className="flex justify-center w-full p-8 mt-4">
-							<p className="text-5xl">{title}</p>
+						<div className="flex justify-start w-full p-8 mt-4">
+							<p className="text-5xl font-extrabold">{title}</p>
 						</div>
 						<div className="flex justify-center w-full p-8 gap-8">
 							<p className="text-base w-full">{description}</p>
@@ -95,8 +94,8 @@ export default async function Work({ params }: { params: { slug: string } }) {
 												const src = getThumbSrc(doc);
 												return (
 													<div className="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 h-28" key={doc.id}>
-														<Link href={doc.slug} className="w-full relative">
-															<Image loader={(imageLoader)} src={src!} fill objectFit={'cover'} alt={doc.title!} className="rounded-3xl" /></Link>
+														<Link href={doc.slug!} className="w-full relative">
+															<Image loader={imageLoader} unoptimized src={src!} objectFit={'cover'} alt={doc.title!} width={400} height={300} className="rounded-3xl" /></Link>
 														<Link href={doc.slug!}>{doc.title!}</Link>
 													</div>
 												);

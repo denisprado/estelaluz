@@ -1,7 +1,8 @@
+import slug from "@/fields/slug";
 import { CollectionConfig } from "payload";
 
-export const Work: CollectionConfig = {
-  slug: "work",
+export const Works: CollectionConfig = {
+  slug: "works",
   admin: {
     useAsTitle: "title",
   },
@@ -11,14 +12,14 @@ export const Work: CollectionConfig = {
       type: "text",
       required: true,
     },
-    {
-      name: "slug",
-      type: "text",
-      required: true,
-      unique: true,
-    },
+    slug,
     {
       name: "description",
+      type: "textarea",
+      required: true,
+    },
+    {
+      name: "technical_description",
       type: "textarea",
       required: true,
     },
@@ -33,13 +34,6 @@ export const Work: CollectionConfig = {
           required: true,
         },
       ],
-      admin: {
-        components: {
-          RowLabel: ({ data, index }) => {
-            return data?.title || `Imagem ${String(index).padStart(2, "0")}`;
-          },
-        },
-      },
     },
     {
       name: "coordenadas",
