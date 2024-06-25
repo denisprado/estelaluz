@@ -95,9 +95,9 @@ export default async function Work({ params }: { params: { slug: string } }) {
 												const src = getThumbSrc(doc);
 												return (
 													<div className="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 h-28" key={doc.id}>
-														<Link href={doc.slug}>
-															<Image loader={(imageLoader)} src={src!} width={300} height={100} alt={doc.title} className="rounded-3xl" /></Link>
-														<Link href={doc.slug}>{doc.title}</Link>
+														<Link href={doc.slug} className="w-full relative">
+															<Image loader={(imageLoader)} src={src!} fill objectFit={'cover'} alt={doc.title!} className="rounded-3xl" /></Link>
+														<Link href={doc.slug!}>{doc.title!}</Link>
 													</div>
 												);
 											})}

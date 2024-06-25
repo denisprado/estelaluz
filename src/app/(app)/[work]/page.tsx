@@ -44,8 +44,8 @@ export default async function Work({ params }: { params: { work: string } }) {
 						const src = getThumbSrc(work)
 						return (
 							src! && <div className="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 h-28" key={work.id}>
-								<Link href={params.work + '/' + work.slug}>
-									<Image loader={imageLoader} src={src!} width={300} height={100} alt={work.title} className="rounded-3xl"></Image>
+								<Link href={params.work + '/' + work.slug} className="relative w-full h-full overflow-hidden">
+									<Image loader={imageLoader} src={src!} alt={work.title!} className="rounded-3xl" fill style={{ objectFit: 'cover' }}></Image>
 								</Link>
 								<Link href={params.work + '/' + work.slug}>{work.title}</Link>
 							</div>
