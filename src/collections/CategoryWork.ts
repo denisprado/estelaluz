@@ -1,3 +1,4 @@
+import { slugify } from "@/helpers/functions";
 import { CollectionConfig } from "payload";
 
 export const CategoryWork: CollectionConfig = {
@@ -14,7 +15,22 @@ export const CategoryWork: CollectionConfig = {
     {
       name: "slug",
       type: "text",
-      required: true,
+      admin: {
+        hidden: true, // hides the field from the admin panel
+      },
+      hooks: {
+        beforeChange: [
+          ({ siblingData }) => {
+            // ensures data is not stored in DB
+            delete siblingData["slug"];
+          },
+        ],
+        afterRead: [
+          ({ data }) => {
+            return `${slugify(data?.title)}`;
+          },
+        ],
+      },
     },
     {
       name: "description",

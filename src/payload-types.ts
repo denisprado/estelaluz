@@ -114,7 +114,7 @@ export interface Media {
 export interface CategoryWork {
   id: number;
   title: string;
-  slug: string;
+  slug?: string | null;
   description?: string | null;
   updatedAt: string;
   createdAt: string;

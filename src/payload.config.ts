@@ -9,11 +9,7 @@ import { fileURLToPath } from "url";
 import configPromise from "@payload-config";
 import { getPayloadHMR } from "@payloadcms/next/utilities";
 import { buildConfig } from "payload";
-import { CategoryWork } from "./collections/CategoryWork";
-import { Courses } from "./collections/Courses";
-import { Media } from "./collections/Media";
-import { Users } from "./collections/Users";
-import { Work } from "./collections/Work";
+import { CategoryWork, Courses, Media, Users, Work } from "./collections";
 import { s3Storage } from "@payloadcms/storage-s3";
 
 const filename = fileURLToPath(import.meta.url);
@@ -34,7 +30,7 @@ async function getData(cat: number) {
 
 export default buildConfig({
   cors: "*",
-  csrf: [process.env.PAYLOAD_PUBLIC_SERVER_URL || ""].filter(Boolean),
+
   admin: {
     user: Users.slug,
     livePreview: {
