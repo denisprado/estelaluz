@@ -4,7 +4,7 @@ import { CollectionConfig } from "payload";
 export const Works: CollectionConfig = {
   slug: "works",
   admin: {
-    useAsTitle: "title",
+    useAsTitle: "slug",
   },
   fields: [
     {

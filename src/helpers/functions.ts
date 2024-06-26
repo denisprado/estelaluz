@@ -1,7 +1,6 @@
 import { Media } from "@/payload-types";
 
 export function getUrl(image: Media | number) {
-  console.log(image);
   // const src =
   //   typeof image !== "number"
   //     ? `https://s3.amazonaws.com/` + "estelaluz" + "/" + image?.filename!
@@ -10,7 +9,8 @@ export function getUrl(image: Media | number) {
   return src;
 }
 
-export function slugify(str: string) {
+//converte string to slug
+export async function slugify(str: string) {
   return String(str)
     .normalize("NFKD") // split accented characters into their base characters and diacritical marks
     .replace(/[\u0300-\u036f]/g, "") // remove all the accents, which happen to be all in the \u03xx UNICODE block.
@@ -20,3 +20,14 @@ export function slugify(str: string) {
     .replace(/\s+/g, "-") // replace spaces with hyphens
     .replace(/-+/g, "-"); // remove consecutive hyphens
 }
+
+// Função de guarda de tipo para coordenadas
+export const hasCoordinates = (
+  coordenadas: any
+): coordenadas is { latitude: string; longitude: string } => {
+  return (
+    coordenadas &&
+    typeof coordenadas.latitude === "string" &&
+    typeof coordenadas.longitude === "string"
+  );
+};

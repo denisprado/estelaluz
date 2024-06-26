@@ -15,8 +15,8 @@ const slug: Field = {
       },
     ],
     afterRead: [
-      ({ data }) => {
-        return `${slugify(data?.title)}`;
+      async ({ data }) => {
+        return `${await slugify(data?.title)}`;
       },
     ],
   },
