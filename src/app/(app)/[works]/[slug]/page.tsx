@@ -18,19 +18,26 @@ export default async function Work({ params }: { params: { slug: string } }) {
 			const id = work?.id ? work?.id as number : null;
 			const allWorksExceptThis: WorkType[] = await getPost(params.slug, 'works', id);
 			const gallery: WorkType['gallery'] = work?.gallery as WorkType['gallery'];
-			const categorySlug = typeof category !== "number" && category ? category.slug : ''
+
 			return (
-				<div key={work.id} className="md:max-w-7xl flex flex-col self-center items-start justify-start w-full">
-					<div className="flex justify-center w-full min-h-96 p-4 mt-8">
+				<div key={work.id} className="md:max-w-7xl flex flex-col self-center items-start justify-start w-full gap-16 mt-8">
+					<div className="flex justify-center w-full min-h-96">
 						<EmblaCarousel gallery={gallery} />
 					</div>
-					<div className="flex justify-start w-full p-8 mt-4">
+
+					<div className="flex justify-start w-full">
 						<p className="text-5xl font-extrabold">{title}</p>
 					</div>
-					<div className="flex justify-center w-full p-8 gap-8">
-						<p className="text-base w-full">{description}</p>
-						<Map hasCoordinates={hasCoordinates} work={work}></Map>
+
+					<div className="grid grid-cols-12 border justify-center w-full gap-8">
+						<div className="col-span-7">
+							<p className="text-base">{description}</p>
+						</div>
+						<div className="col-span-5">
+							<Map hasCoordinates={hasCoordinates} work={work}></Map>
+						</div>
 					</div>
+
 					{
 						allWorksExceptThis.length > 0 && (
 							<div className="md:max-w-7xl flex flex-col self-center items-start justify-center w-full">
