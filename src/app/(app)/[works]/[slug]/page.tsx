@@ -6,6 +6,7 @@ import configPromise from '@payload-config';
 import { getPayloadHMR } from "@payloadcms/next/utilities";
 import Map from '@/components/Map'
 
+
 export default async function Work({ params }: { params: { slug: string } }) {
 
 	const allWorks = await getPost(params.slug, 'works');
@@ -17,7 +18,7 @@ export default async function Work({ params }: { params: { slug: string } }) {
 			const id = work?.id ? work?.id as number : null;
 			const allWorksExceptThis: WorkType[] = await getPost(params.slug, 'works', id);
 			const gallery: WorkType['gallery'] = work?.gallery as WorkType['gallery'];
-
+			const categorySlug = typeof category !== "number" && category ? category.slug : ''
 			return (
 				<div key={work.id} className="md:max-w-7xl flex flex-col self-center items-start justify-start w-full">
 					<div className="flex justify-center w-full min-h-96 p-4 mt-8">
