@@ -59,7 +59,7 @@ async function getPost(slug: string | null, collection: string, excludeWorkId?: 
 
 	if (excludeWorkId === undefined || excludeWorkId === null) {
 		where.slug = {
-			equal: slug
+			// equals: slug
 		};
 	}
 
@@ -74,5 +74,7 @@ async function getPost(slug: string | null, collection: string, excludeWorkId?: 
 		where: where,
 	});
 
-	return data.docs as unknown as WorkType[];
+	const dataOfPost = data.docs.filter(doc => doc.slug === slug)
+
+	return excludeWorkId ? data.docs as unknown as WorkType[] : dataOfPost as unknown as WorkType[];
 }

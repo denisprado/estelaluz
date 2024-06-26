@@ -1,5 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
+import imageLoader from '@/helpers/loader'
 type PropType = {
 	selected: boolean
 	index: number
@@ -21,7 +22,7 @@ export const Thumb: React.FC<PropType> = (props) => {
 				type="button"
 				className="embla-thumbs__slide__number"
 			>
-				<Image src={src!} className="rounded-3xl w-full" fill style={{ objectFit: 'cover' }} alt={'Image'}></Image>
+				<Image src={src!} loader={imageLoader} className="rounded-3xl w-full" fill style={{ objectFit: 'cover' }} alt={'Image'}></Image>
 			</button>
 		</div>
 	)
