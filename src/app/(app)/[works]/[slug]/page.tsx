@@ -5,7 +5,6 @@ import { Work as WorkType } from "@/payload-types";
 import configPromise from '@payload-config';
 import { getPayloadHMR } from "@payloadcms/next/utilities";
 import Map from '@/components/Map'
-import { equal } from "assert";
 
 export default async function Work({ params }: { params: { slug: string } }) {
 

@@ -4,7 +4,7 @@ import configPromise from '@payload-config';
 import { getPayloadHMR } from '@payloadcms/next/utilities';
 import Card from '@/components/Card';
 
-export async function getPost(cat: string, collection: string): Promise<WorkType[] | Product[]> {
+async function getPost(cat: string, collection: string): Promise<WorkType[] | Product[]> {
 	const payload = await getPayloadHMR({ config: configPromise })
 	const posts = await payload.find({
 		collection: collection,
