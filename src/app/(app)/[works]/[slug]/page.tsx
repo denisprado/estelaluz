@@ -40,7 +40,7 @@ export default async function Work({ params }: { params: { slug: string } }) {
 								<div className="min-h-screen w-full">
 									<div className="grid grid-cols-12 p-4 gap-4 w-full flex-wrap">
 										{allWorksExceptThis.map((work) =>
-											<Card post={work} />
+											<Card post={work} key={work.id} />
 										)}
 									</div>
 								</div>

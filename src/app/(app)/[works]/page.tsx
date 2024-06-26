@@ -29,7 +29,7 @@ export default async function Work({ params }: { params: { works: string; }; }) 
 			<div className="min-h-screen w-full ">
 				<div className="grid grid-cols-12 p-4 gap-4 w-full flex-wrap">
 					{works && works!?.map((work: WorkType) =>
-						<Card category={params.works!} post={work} />
+						<Card category={params.works!} post={work} key={work.id} />
 					)}
 				</div>
 			</div>
