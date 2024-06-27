@@ -41,7 +41,6 @@ export const Products: CollectionConfig = {
       name: "product_category",
       type: "relationship",
       relationTo: "categoryProduct",
-      hasMany: true,
       required: true,
     },
     {

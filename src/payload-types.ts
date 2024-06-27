@@ -148,7 +148,7 @@ export interface Product {
   technical_description?: string | null;
   price?: number | null;
   stock?: number | null;
-  product_category: (number | CategoryProduct)[];
+  product_category: number | CategoryProduct;
   work_product?: (number | Work)[] | null;
   gallery?:
     | {

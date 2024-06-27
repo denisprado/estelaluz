@@ -12,7 +12,8 @@ const imageLoader = ({ src, width, quality }: ImageLoaderProps) => {
     params.push(`q=${quality}`);
   }
   const paramsString = params.join("&");
-  return `https://${process.env.S3_BUCKET}.s3.${process.env.S3_REGION}.amazonaws.com/${src}?${paramsString}`;
+  // return `https://${process.env.S3_BUCKET}.s3.${process.env.S3_REGION}.amazonaws.com/${src}?${paramsString}`;
+  return `https://estelaluz.s3.us-east-2.amazonaws.com/${src}?${paramsString}`;
 };
 
 export default imageLoader;

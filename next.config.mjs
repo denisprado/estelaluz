@@ -6,6 +6,16 @@ const nextConfig = {
 	// experimental: {
 	// 	reactCompiler: false
 	// },
+	async redirects() {
+		return [
+			// Basic redirect
+			{
+				source: '/adquira',
+				destination: '/adquira/todos',
+				permanent: true,
+			},
+		]
+	},
 	images: {
 
 		remotePatterns: [
