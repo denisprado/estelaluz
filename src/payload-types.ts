@@ -48,7 +48,7 @@ export interface User {
 export interface Work {
   id: number;
   title: string;
-  slug: string;
+  slug?: string | null;
   description: string;
   technical_description: string;
   gallery?:
@@ -117,7 +117,7 @@ export interface Media {
 export interface CategoryWork {
   id: number;
   title: string;
-  slug: string;
+  slug?: string | null;
   description?: string | null;
   updatedAt: string;
   createdAt: string;
@@ -128,7 +128,7 @@ export interface CategoryWork {
  */
 export interface Course {
   id: number;
-  slug: string;
+  slug?: string | null;
   title: string;
   url: string;
   description?: string | null;
@@ -143,7 +143,7 @@ export interface Course {
 export interface Product {
   id: number;
   title: string;
-  slug: string;
+  slug?: string | null;
   description: string;
   technical_description?: string | null;
   price?: number | null;
@@ -166,7 +166,7 @@ export interface Product {
 export interface CategoryProduct {
   id: number;
   title: string;
-  slug: string;
+  slug?: string | null;
   description?: string | null;
   updatedAt: string;
   createdAt: string;
