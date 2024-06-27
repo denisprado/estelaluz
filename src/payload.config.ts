@@ -41,33 +41,33 @@ export default buildConfig({
 
   admin: {
     user: Users.slug,
-    livePreview: {
-      breakpoints: [
-        {
-          label: "Mobile",
-          name: "mobile",
-          width: 375,
-          height: 667,
-        },
-        {
-          label: "Tablet",
-          name: "tablet",
-          width: 768,
-          height: 1024,
-        },
-        {
-          label: "Desktop",
-          name: "desktop",
-          width: 1440,
-          height: 900,
-        },
-      ],
-      url: async ({ data }) =>
-        `${process.env.NEXT_PUBLIC_SERVER_URL}/${await getData(
-          data.category
-        )}/${data.slug}`,
-      collections: ["work"],
-    },
+    // livePreview: {
+    //   breakpoints: [
+    //     {
+    //       label: "Mobile",
+    //       name: "mobile",
+    //       width: 375,
+    //       height: 667,
+    //     },
+    //     {
+    //       label: "Tablet",
+    //       name: "tablet",
+    //       width: 768,
+    //       height: 1024,
+    //     },
+    //     {
+    //       label: "Desktop",
+    //       name: "desktop",
+    //       width: 1440,
+    //       height: 900,
+    //     },
+    //   ],
+    //   url: async ({ data }) =>
+    //     `${process.env.NEXT_PUBLIC_SERVER_URL}/${await getData(
+    //       data.category
+    //     )}/${data.slug}`,
+    //   collections: ["work"],
+    // },
   },
   collections: [
     Users,

@@ -23,7 +23,7 @@ const Card = ({ category, post }: { category?: string, post: Work | Product }) =
 					<div>
 						{isProduct(post) && "R$ " + post.price!}
 					</div>
-					<div className="uppercase font-bold text-sm">Adquira</div>
+					{isProduct(post) && <div className="uppercase font-bold text-sm">Adquira</div>}
 				</div>
 			</div>
 		</Link>

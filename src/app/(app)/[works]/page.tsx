@@ -1,20 +1,28 @@
 
-import { Product, Work as WorkType } from "@/payload-types";
+import { Work as WorkType } from "@/payload-types";
 import configPromise from '@payload-config';
 import { getPayloadHMR } from '@payloadcms/next/utilities';
 import Card from '@/components/Card';
 
-async function getPost(cat: string, collection: string): Promise<WorkType[] | Product[]> {
+async function getPost(cat: string, collection: string): Promise<WorkType[] | WorkType[]> {
 	const payload = await getPayloadHMR({ config: configPromise })
 	const posts = await payload.find({
 		collection: collection,
-		where: {
-			'category.slug': {
-				equals: cat ?? '',
-			}
-		},
+		// where: {
+		// 	'category.slug': {
+		// 		equals: cat,
+		// 	}
+		// },
 	})
-	return posts.docs as unknown as WorkType[]
+	const docs: WorkType[] = posts.docs as unknown as WorkType[]
+	console.log(docs)
+	const dataOfPost = docs.filter((doc) => {
+		const category = doc.category
+		return category && typeof category !== 'number' && category?.slug! === cat
+	})
+	console.log(dataOfPost)
+	return dataOfPost as unknown as WorkType[]
+
 }
 
 export default async function Work({ params }: { params: { works: string; }; }) {
