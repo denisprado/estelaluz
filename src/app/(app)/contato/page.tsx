@@ -56,7 +56,7 @@ const Agendar = () => {
 							</label>
 
 						</div>
-						<button type="submit" className="btn btn-accent text-white w-full ">Enviar agendamento</button>
+						<button type="submit" className="w-full ">Enviar agendamento</button>
 
 					</form>
 				</div>

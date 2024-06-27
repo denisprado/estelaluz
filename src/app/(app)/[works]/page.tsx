@@ -20,7 +20,6 @@ async function getPost(cat: string, collection: string): Promise<WorkType[] | Wo
 		const category = doc.category
 		return category && typeof category !== 'number' && category?.slug! === cat
 	})
-	console.log(dataOfPost)
 	return dataOfPost as unknown as WorkType[]
 
 }
