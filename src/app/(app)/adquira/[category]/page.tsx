@@ -5,7 +5,6 @@ import { getPayloadHMR } from '@payloadcms/next/utilities';
 import Card from '@/components/Card';
 import { getCategories } from "@/helpers/functions";
 import Link from "next/link";
-import { useSearchParams, usePathname, useRouter } from 'next/navigation';
 
 async function getPost(cat: string, collection: string): Promise<Product[] | Product[]> {
 	const payload = await getPayloadHMR({ config: configPromise })

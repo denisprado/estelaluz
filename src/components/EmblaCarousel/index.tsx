@@ -1,11 +1,10 @@
-"use client"
+'use client'
 import React, { useState, useEffect, useCallback } from 'react'
 import { EmblaOptionsType } from 'embla-carousel'
 import useEmblaCarousel from 'embla-carousel-react'
 import { Thumb } from './ThumbsButton'
-import { Work } from '@/payload-types'
+import { Media, Work } from '@/payload-types'
 import Image from 'next/image'
-import { getUrl } from '@/helpers/functions'
 import imageLoader from '@/helpers/loader'
 type PropType = {
 	gallery: Work['gallery']
@@ -42,6 +41,14 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
 		emblaMainApi.on('select', onSelect).on('reInit', onSelect)
 	}, [emblaMainApi, onSelect])
 
+	function getUrl(image: Media | number) {
+		// const src =
+		//   typeof image !== "number"
+		//     ? `https://s3.amazonaws.com/` + "estelaluz" + "/" + image?.filename!
+		//     : "/media/";
+		const src = typeof image !== "number" ? image?.filename! : "/media/";
+		return src;
+	}
 	return (
 		<div className="embla">
 			<div className="embla__viewport" ref={emblaMainRef}>
