@@ -4,6 +4,7 @@ import { Field } from "payload";
 const slug: Field = {
   name: "slug",
   type: "text",
+  required: true,
   admin: {
     hidden: true, // hides the field from the admin panel
   },

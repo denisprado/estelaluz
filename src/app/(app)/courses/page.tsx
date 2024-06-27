@@ -1,9 +1,7 @@
-import Link from "next/link";
 
-import { getPayloadHMR } from '@payloadcms/next/utilities'
-import configPromise from '@payload-config'
-import Image from "next/image";
 import { Course as CourseType } from "@/payload-types";
+import configPromise from '@payload-config';
+import { getPayloadHMR } from '@payloadcms/next/utilities';
 import classNames from 'classnames';
 
 async function getCourses(): Promise<CourseType[]> {

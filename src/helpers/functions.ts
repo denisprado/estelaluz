@@ -1,4 +1,12 @@
-import { Media } from "@/payload-types";
+import {
+  CategoryProduct,
+  CategoryWork,
+  Media,
+  Product,
+  Work,
+} from "@/payload-types";
+import { getPayloadHMR } from "@payloadcms/next/utilities";
+import configPromise from "@payload-config";
 
 export function getUrl(image: Media | number) {
   // const src =
@@ -31,3 +39,13 @@ export const hasCoordinates = (
     typeof coordenadas.longitude === "string"
   );
 };
+
+export async function getCategories(
+  collection: "categoryWork" | "categoryProduct"
+): Promise<CategoryProduct[] | CategoryWork[]> {
+  const payload = await getPayloadHMR({ config: configPromise });
+  const data = await payload.find<"categoryWork" | "categoryProduct">({
+    collection: collection,
+  });
+  return data.docs as unknown as CategoryProduct[] | CategoryWork[];
+}

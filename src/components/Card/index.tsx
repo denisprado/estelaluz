@@ -5,8 +5,9 @@ import { Product, Work } from "@/payload-types";
 import { getUrl } from "@/helpers/functions";
 
 const Card = ({ category, post }: { category?: string, post: Work | Product }) => {
-	const src = getThumbSrc(post);
 
+
+	const src = getThumbSrc(post);
 	const url = category ? category + '/' + post.slug! : post.slug!
 
 	return (
@@ -16,16 +17,28 @@ const Card = ({ category, post }: { category?: string, post: Work | Product }) =
 					sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw">
 				</Image>
 			</div>
-			<div>{post.title!}</div>
+			<div className="flex flex-row justify-between gap-4">
+				<div>{post.title!}</div>
+				<div className="flex flex-col text-right">
+					<div>
+						{isProduct(post) && "R$ " + post.price!}
+					</div>
+					<div className="uppercase font-bold text-sm">Adquira</div>
+				</div>
+			</div>
 		</Link>
 	)
 }
 
 export function getThumbSrc(post: Work | Product) {
 	const gallery = post.gallery!
-	const image = gallery[0].image
+	const image = gallery[0]?.image!
 	const src = getUrl(image)
 	return src;
+}
+
+function isProduct(post: Work | Product): post is Product {
+	return 'price' in post;
 }
 
 export default Card

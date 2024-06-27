@@ -1,21 +1,10 @@
-import Image from "next/image";
-import Link from "next/link";
 import Logo from "@/components/Logo";
-import { getPayloadHMR } from "@payloadcms/next/utilities";
-import configPromise from '@payload-config'
+import { getCategories } from "@/helpers/functions";
+import Link from "next/link";
 
 export default async function Header() {
 
-	async function getData() {
-		const payload = await getPayloadHMR({ config: configPromise })
-		const data = await payload.find({
-			collection: 'categoryWork',
-
-		})
-		return data.docs
-	}
-
-	const data = await getData()
+	const data = await getCategories('categoryWork')
 	return (
 		<nav className="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
 			<div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto py-4 px-2">
@@ -35,7 +24,7 @@ export default async function Header() {
 							<a href="#" className="hover:font-bold block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-gray-700 md:p-0 md:dark:hover:text-gray-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">contato</a>
 						</li>
 					</ul>
-					<button type="button" className="text-white bg-black hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-gray-600 dark:hover:bg-black dark:focus:ring-gray-800">Adquira</button>
+					<Link href={'adquira'} type="button" className="text-white bg-black hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-gray-600 dark:hover:bg-black dark:focus:ring-gray-800">Adquira</Link>
 					<button data-collapse-toggle="navbar-sticky" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
 						<span className="sr-only">Open main menu</span>
 						<svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
