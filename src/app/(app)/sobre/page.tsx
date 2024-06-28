@@ -1,3 +1,4 @@
+
 import { getPayloadHMR } from "@payloadcms/next/utilities"
 import configPromise from '@payload-config';
 import { Profile } from '@/payload-types'
@@ -23,7 +24,7 @@ const SobreHome = async () => {
 					<Image src={typeof image !== 'number' ? image.url! : ''} alt="Imagem da Estela" fill objectFit="contain" objectPosition="top" />
 				</div>
 				<div className="flex flex-col gap-8 col-span-8">
-					<p className="font-bold text-4xl">{name}</p>
+					<p className="font-bold text-5xl">{name}</p>
 					<div>{description}</div>
 
 					<div className="flex flex-col gap-4">
