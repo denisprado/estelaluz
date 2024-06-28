@@ -3,6 +3,7 @@ import { Work as WorkType } from "@/payload-types";
 import configPromise from '@payload-config';
 import { getPayloadHMR } from '@payloadcms/next/utilities';
 import Card from '@/components/Card';
+import Loading from "./loading";
 
 async function getPost(cat: string, collection: string): Promise<WorkType[] | WorkType[]> {
 	const payload = await getPayloadHMR({ config: configPromise })
@@ -24,8 +25,15 @@ async function getPost(cat: string, collection: string): Promise<WorkType[] | Wo
 
 }
 
+
+
 export default async function Work({ params }: { params: { works: string; }; }) {
 	const works = await getPost(params.works, 'works') as WorkType[];
+
+	if (!works) {
+		return <Loading />;
+	}
+
 	return (
 		<div className="md:max-w-7xl flex flex-col self-center items-start justify-center w-full">
 			<div className="flex justify-center  w-full  p-14">

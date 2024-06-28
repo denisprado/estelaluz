@@ -9,6 +9,7 @@
 export interface Config {
   collections: {
     users: User;
+    profile: Profile;
     works: Work;
     courses: Course;
     categoryWork: CategoryWork;
@@ -43,25 +44,28 @@ export interface User {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "works".
+ * via the `definition` "profile".
  */
-export interface Work {
+export interface Profile {
   id: number;
-  title: string;
-  slug?: string | null;
+  image: number | Media;
+  name: string;
   description: string;
-  technical_description: string;
-  gallery?:
+  phone?: string | null;
+  curriculum?:
     | {
-        image: number | Media;
+        title?: string | null;
+        description?: string | null;
         id?: string | null;
       }[]
     | null;
-  coordenadas?: {
-    longitude?: string | null;
-    latitude?: string | null;
-  };
-  category?: (number | null) | CategoryWork;
+  press?:
+    | {
+        title?: string | null;
+        link?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -109,6 +113,30 @@ export interface Media {
       filename?: string | null;
     };
   };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "works".
+ */
+export interface Work {
+  id: number;
+  title: string;
+  slug?: string | null;
+  description: string;
+  technical_description: string;
+  gallery?:
+    | {
+        image: number | Media;
+        id?: string | null;
+      }[]
+    | null;
+  coordenadas?: {
+    longitude?: string | null;
+    latitude?: string | null;
+  };
+  category?: (number | null) | CategoryWork;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

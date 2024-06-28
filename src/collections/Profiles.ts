@@ -3,10 +3,15 @@ import { CollectionConfig } from "payload";
 export const Profile: CollectionConfig = {
   slug: "profile",
   admin: {
-    useAsTitle: "email",
+    useAsTitle: "name",
   },
-  auth: true,
   fields: [
+    {
+      name: "image",
+      type: "upload",
+      relationTo: "media",
+      required: true,
+    },
     {
       name: "name",
       type: "text",
@@ -14,7 +19,7 @@ export const Profile: CollectionConfig = {
     },
     {
       name: "description",
-      type: "richText",
+      type: "textarea",
       required: true,
     },
     {
