@@ -3,6 +3,7 @@ import { Montserrat_Alternates } from "next/font/google";
 import "./globals.css";
 import "./embla.css";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const montserrat = Montserrat_Alternates({
 	subsets: ["latin-ext"],
@@ -23,7 +24,9 @@ export default function RootLayout({
 		<html lang="en">
 			<body className={montserrat.className + ' overflow-x-hidden'}>
 				<Header />
-				{children}</body>
+				{children}
+				<Footer />
+			</body>
 		</html>
 	);
 }
