@@ -1,6 +1,6 @@
 // storage-adapter-import-placeholder
 import { postgresAdapter } from "@payloadcms/db-postgres";
-import { lexicalEditor } from "@payloadcms/richtext-lexical";
+import { slateEditor } from "@payloadcms/richtext-slate";
 import path from "path";
 import { pt } from "payload/i18n/pt";
 import sharp from "sharp";
@@ -8,6 +8,7 @@ import { fileURLToPath } from "url";
 
 import configPromise from "@payload-config";
 import { getPayloadHMR } from "@payloadcms/next/utilities";
+import { s3Storage } from "@payloadcms/storage-s3";
 import { buildConfig } from "payload";
 import {
   CategoryProduct,
@@ -18,7 +19,6 @@ import {
   Users,
   Works,
 } from "./collections";
-import { s3Storage } from "@payloadcms/storage-s3";
 import { Profile } from "./collections/Profiles";
 
 const filename = fileURLToPath(import.meta.url);
@@ -39,7 +39,7 @@ async function getData(cat: number) {
 
 export default buildConfig({
   cors: "*",
-
+  serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL,
   admin: {
     user: Users.slug,
     livePreview: {
@@ -67,7 +67,7 @@ export default buildConfig({
         `${process.env.NEXT_PUBLIC_SERVER_URL}/${await getData(
           data.category
         )}/${data.slug}`,
-      collections: ["work"],
+      collections: ["works"],
     },
   },
   collections: [
@@ -80,7 +80,7 @@ export default buildConfig({
     Products,
     CategoryProduct,
   ],
-  editor: lexicalEditor(),
+  editor: slateEditor({}),
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
     outputFile: path.resolve(dirname, "payload-types.ts"),
