@@ -16,7 +16,7 @@ async function getPost(cat: string, collection: string): Promise<WorkType[] | Wo
 		// },
 	})
 	const docs: WorkType[] = posts.docs as unknown as WorkType[]
-	console.log(docs)
+
 	const dataOfPost = docs.filter((doc) => {
 		const category = doc.category
 		return category && typeof category !== 'number' && category?.slug! === cat
