@@ -4,6 +4,7 @@ import configPromise from '@payload-config';
 import { Profile } from '@/payload-types'
 import Image from "next/image";
 import imageLoader from "@/helpers/loader";
+import { getUrl } from "@/helpers/functions";
 
 async function getProfile(): Promise<Profile> {
 	const payload = await getPayloadHMR({ config: configPromise })
@@ -18,11 +19,12 @@ const SobreHome = async () => {
 	const profile = await getProfile()
 
 	const { name, description, image, curriculum, press, phone } = profile
+	const src = getUrl(image)
 	return (
 		<div className="md:max-w-7xl flex flex-col self-center items-start justify-center w-full mt-8">
 			<div className="grid grid-cols-12 gap-8">
 				<div className="relative col-span-4">
-					<Image src={typeof image !== 'number' ? image.url! : ''} loader={imageLoader} alt="Imagem da Estela" fill objectFit="contain" objectPosition="top" />
+					<Image priority loader={imageLoader} src={src} alt="Imagem da Estela" fill objectFit="contain" objectPosition="top" />
 				</div>
 				<div className="flex flex-col gap-8 col-span-8">
 					<p className="font-bold text-5xl">{name}</p>
