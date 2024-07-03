@@ -13,7 +13,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
 			const allProductsExceptThis: Product[] = await getPost(params.slug, 'products', id);
 			const gallery: Product['gallery'] = product?.gallery as Product['gallery'];
 			return (
-				<div key={product.id} className="md:max-w-7xl flex flex-col sm:flex-row  items-start justify-start w-full gap-16 mt-8">
+				<div key={product.id} className="md:max-w-7xl flex flex-col sm:flex-row  items-start justify-start w-full gap-16 mt-8 ">
 					<div className="flex justify-center w-1/2 min-h-96">
 						<EmblaCarousel gallery={gallery} />
 					</div>

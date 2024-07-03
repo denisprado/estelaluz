@@ -11,7 +11,7 @@ const nextConfig = {
 			// Basic redirect
 			{
 				source: '/adquira',
-				destination: '/adquira/todos',
+				destination: '/adquira/categoria/todos',
 				permanent: true,
 			},
 		]

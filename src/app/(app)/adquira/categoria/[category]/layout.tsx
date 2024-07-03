@@ -1,9 +1,8 @@
-import { getCategories } from "@/helpers/functions"
-import { Product } from "@/payload-types"
-import { getPayloadHMR } from "@payloadcms/next/utilities"
-import Link from "next/link"
-import configPromise from '@payload-config';
 import ProductCategories from "@/components/ProductCategories";
+import { getCategories } from "@/helpers/functions";
+import { Product } from "@/payload-types";
+import configPromise from '@payload-config';
+import { getPayloadHMR } from "@payloadcms/next/utilities";
 
 async function getPosts(cat: string, collection: string): Promise<Product[] | Product[]> {
 	const payload = await getPayloadHMR({ config: configPromise })
@@ -25,10 +24,6 @@ async function getPosts(cat: string, collection: string): Promise<Product[] | Pr
 	return dataOfPost as unknown as Product[]
 }
 
-
-
-
-
 export default async function RootLayout({
 	children, params,
 }: Readonly<{
@@ -37,7 +32,6 @@ export default async function RootLayout({
 		category?: string;
 	};
 }>) {
-	const products = await getPosts(params?.category!, 'products') as Product[];
 	const productCategories = await getCategories('categoryProduct') as Product[];
 	return (
 		<div className="flex items-start justify-center min-h-screen w-full m-1 pt-16">

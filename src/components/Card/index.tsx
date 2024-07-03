@@ -12,7 +12,7 @@ const Card = ({ category, post }: { category?: string, post: Work | Product }) =
 
 
 	const src = getThumbSrc(post);
-	const url = category ? category + '/' + post.slug! : post.slug!
+	const url = category ? category + '/' + post.slug! : isProduct(post) ? '/adquira/' + post.slug! : post.slug!
 
 	const handleSubmitWithTitle = handleSubmit.bind(null, post.title)
 

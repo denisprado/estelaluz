@@ -1,10 +1,8 @@
 
-import { CategoryProduct, Product } from "@/payload-types";
+import Card from '@/components/Card';
+import { Product } from "@/payload-types";
 import configPromise from '@payload-config';
 import { getPayloadHMR } from '@payloadcms/next/utilities';
-import Card from '@/components/Card';
-import { getCategories } from "@/helpers/functions";
-import Link from "next/link";
 
 async function getPosts(cat: string, collection: string): Promise<Product[] | Product[]> {
 	const payload = await getPayloadHMR({ config: configPromise })
@@ -36,17 +34,11 @@ export default async function ProductPage({
 }) {
 
 	const products = await getPosts(params?.category!, 'products') as Product[];
-
-
 	return (
-
 		products && products!?.map((product: Product) => {
-			const category = product.product_category
-			const { slug } = category as CategoryProduct
-			return (<Card category={slug!} post={product} key={product.id} />)
+			return (<Card post={product} key={product.id} />)
 		}
 		)
-
 	);
 }
 
