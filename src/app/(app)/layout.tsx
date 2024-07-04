@@ -26,6 +26,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="pt">
+
 			<body className={montserrat_alternates.className + ' overflow-x-hidden'}>
 				<Header />
 				{children}

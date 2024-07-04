@@ -14,7 +14,6 @@ const Card = ({ category, post }: { category?: string, post: Work | Product }) =
 	const src = getThumbSrc(post);
 	const url = category ? category + '/' + post.slug! : isProduct(post) ? '/adquira/' + post.slug! : post.slug!
 
-	const handleSubmitWithTitle = handleSubmit.bind(null, post.title)
 
 	return (
 		src! && <div className="flex flex-col col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 w-full">
@@ -35,7 +34,7 @@ const Card = ({ category, post }: { category?: string, post: Work | Product }) =
 						{/* <form action={handleSubmitWithTitle}>
 							<button className="uppercase font-bold text-sm" type="submit">Adquira</button>
 							</form> */}
-						<TextLink className="uppercase font-bold text-sm" text="Adquira" url={{ pathname: '/contato/[product]', query: { product: 'Tenho interesse na obra ' + post.title } }}></TextLink>
+						<TextLink className="uppercase font-bold text-sm" text="Adquira" url={'/contato/Tenho interesse na obra ' + post.title}></TextLink>
 
 					</div>}
 				</div>

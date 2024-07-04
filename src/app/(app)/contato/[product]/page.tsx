@@ -2,14 +2,15 @@
 
 import PageContainer from "@/components/PageContainer"
 import { PageTitle } from "@/components/PageTitle"
-import { useSearchParams } from "next/navigation"
 import { FormEvent, Suspense, useState } from "react"
 
 const Contato = ({ params }: { params: { product: string | '' } }) => {
 	const [nome, setNome] = useState('')
 	const [email, setEmail] = useState('')
 
-	const [mensagem, setMensagem] = useState<string | ''>(params.product)
+	const [mensagem, setMensagem] = useState<string | ''>(decodeURIComponent(params.product))
+
+
 
 	const handleSubmit = (event: FormEvent) => {
 		event.preventDefault();
@@ -24,10 +25,10 @@ const Contato = ({ params }: { params: { product: string | '' } }) => {
 	return (
 		<PageContainer>
 			<PageTitle align="start" caps="">Contato</PageTitle>
-			<div className="grid grid-cols-12 gap-8">
-				<div className="col-span-4">
+			<div className="grid grid-cols-12 gap-8 w-full">
+				<div className="col-span-6">
 					<form onSubmit={handleSubmit}>
-						<div className="flex flex-col gap-4 relative w-full h-full pb-10 ">
+						<div className="flex flex-col gap-4  w-full h-full pb-10 ">
 							<label className="form-control w-full ">
 								<div className="label">
 									<span className="font-semibold">Nome completo</span>
@@ -53,11 +54,13 @@ const Contato = ({ params }: { params: { product: string | '' } }) => {
 								<div className="label">
 									<span className="font-semibold">Mensagem</span>
 								</div>
-								<Suspense><textarea
+								<textarea
+									rows={10}
 									className="text w-full  focus:border-secondary"
 									onChange={(e) => setMensagem(e.target.value)}
 									value={mensagem!}
-								/></Suspense>
+
+								/>
 							</label>
 
 						</div>
