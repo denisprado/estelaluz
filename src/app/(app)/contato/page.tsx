@@ -2,12 +2,14 @@
 
 import PageContainer from "@/components/PageContainer"
 import { PageTitle } from "@/components/PageTitle"
-import { FormEvent, useState } from "react"
+import { useSearchParams } from "next/navigation"
+import { FormEvent, Suspense, useState } from "react"
 
-const Agendar = () => {
+const Contato = ({ params }: { params: { product: string | '' } }) => {
 	const [nome, setNome] = useState('')
 	const [email, setEmail] = useState('')
-	const [mensagem, setMensagem] = useState('')
+
+	const [mensagem, setMensagem] = useState<string | ''>(params.product)
 
 	const handleSubmit = (event: FormEvent) => {
 		event.preventDefault();
@@ -50,16 +52,17 @@ const Agendar = () => {
 							<label className="form-control w-full ">
 								<div className="label">
 									<span className="font-semibold">Mensagem</span>
-								</div><textarea
+								</div>
+								<Suspense><textarea
 									className="text w-full  focus:border-secondary"
 									onChange={(e) => setMensagem(e.target.value)}
-									value={mensagem}
-								/>
+									value={mensagem!}
+								/></Suspense>
 							</label>
 
 						</div>
 						<button type="submit" className="w-full text-white bg-black hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-gray-600 dark:hover:bg-black dark:focus:ring-gray-800">
-							Enviar agendamento
+							Enviar mensagem
 						</button>
 
 					</form>
@@ -69,4 +72,4 @@ const Agendar = () => {
 	)
 }
 
-export default Agendar
+export default Contato

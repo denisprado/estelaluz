@@ -35,7 +35,7 @@ const Card = ({ category, post }: { category?: string, post: Work | Product }) =
 						{/* <form action={handleSubmitWithTitle}>
 							<button className="uppercase font-bold text-sm" type="submit">Adquira</button>
 							</form> */}
-						<TextLink className="uppercase font-bold text-sm" text="Adquira" url={'/contato'}></TextLink>
+						<TextLink className="uppercase font-bold text-sm" text="Adquira" url={{ pathname: '/contato/[product]', query: { product: 'Tenho interesse na obra ' + post.title } }}></TextLink>
 
 					</div>}
 				</div>
