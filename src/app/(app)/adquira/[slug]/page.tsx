@@ -1,5 +1,8 @@
 import Card from "@/components/Card";
+import CardListContainer from "@/components/CardListContainer";
 import EmblaCarousel from "@/components/EmblaCarousel";
+import PageContainer from "@/components/PageContainer";
+import { PageTitle } from "@/components/PageTitle";
 import { Product, Work } from "@/payload-types";
 import configPromise from '@payload-config';
 import { getPayloadHMR } from "@payloadcms/next/utilities";
@@ -13,48 +16,51 @@ export default async function ProductPage({ params }: { params: { slug: string }
 			const allProductsExceptThis: Product[] = await getPost(params.slug, 'products', id);
 			const gallery: Product['gallery'] = product?.gallery as Product['gallery'];
 			return (
-				<div key={product.id} className="md:max-w-7xl flex flex-col sm:flex-row  items-start justify-start w-full gap-16 mt-8 ">
-					<div className="flex justify-center w-1/2 min-h-96">
-						<EmblaCarousel gallery={gallery} />
-					</div>
-
-					<div className="flex flex-col justify-center w-1/2 gap-8">
-						<div className="flex justify-start w-full">
-							<p className="text-5xl font-extrabold">{title}</p>
+				<PageContainer key={product.id}>
+					<div className="grid grid-cols-12 gap-8 justify-start items-start">
+						<div className="col-span-12">
+							<PageTitle caps="" align="start">{title}</PageTitle>
+						</div>
+						<div className="col-span-6">
+							<EmblaCarousel gallery={gallery} />
 						</div>
 
-						<div className="grid grid-cols-12 justify-center w-full gap-8">
-							<div className="col-span-7">
-								<p className="text-base">{description}</p>
-							</div>
-							<div className="flex flex-col text-right border">
-								<div className="flex flex-row">
-									{isProduct(product) && <div className="flex flex-row text-right">
-										<div>R$</div> <div>{price!},00</div>
-									</div>}
-								</div>
-								{isProduct(product) && <a href="/contato" className="uppercase font-bold text-sm">Adquira</a>}
-							</div>
-						</div>
-					</div>
 
-					{
-						allProductsExceptThis.length > 0 && (
-							<div className="md:max-w-7xl flex flex-col self-center items-start justify-center w-full">
-								<div className="flex justify-center w-full p-14 divide-x-4">
-									<p className="text-3xl">Outros Produtos na Categoria {typeof product_category !== 'number' ? product_category?.title! : ''}</p>
+						<div className="flex flex-col col-span-6 gap-8">
+
+							<div className="grid grid-cols-12 justify-center w-full gap-8">
+								<div className="col-span-12">
+									<p className="text-base">{description}</p>
 								</div>
-								<div className="min-h-screen w-full">
-									<div className="grid grid-cols-12 p-4 gap-4 w-full flex-wrap">
-										{allProductsExceptThis.map((product) =>
-											<Card post={product} key={product.id} />
-										)}
+								<div className="flex flex-col text-right border">
+									<div className="flex flex-row">
+										{isProduct(product) && <div className="flex flex-row text-right">
+											<div>R$</div> <div>{price!},00</div>
+										</div>}
 									</div>
+									{isProduct(product) && <a href="/contato" className="uppercase font-bold text-sm">Adquira</a>}
 								</div>
 							</div>
-						)
-					}
-				</div >
+						</div>
+
+						{
+							allProductsExceptThis.length > 0 && (
+								<PageContainer>
+									<div className="flex justify-center w-full p-14 divide-x-4">
+										<p className="text-3xl">Outros Produtos na Categoria {typeof product_category !== 'number' ? product_category?.title! : ''}</p>
+									</div>
+									<div className="min-h-screen w-full">
+										<CardListContainer>
+											{allProductsExceptThis.map((product) =>
+												<Card post={product} key={product.id} />
+											)}
+										</CardListContainer>
+									</div>
+								</PageContainer>
+							)
+						}
+					</div>
+				</PageContainer >
 			);
 		})
 	);

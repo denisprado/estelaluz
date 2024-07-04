@@ -1,4 +1,6 @@
 
+import PageContainer from "@/components/PageContainer";
+import { PageTitle } from "@/components/PageTitle";
 import { Course as CourseType } from "@/payload-types";
 import configPromise from '@payload-config';
 import { getPayloadHMR } from '@payloadcms/next/utilities';
@@ -16,10 +18,8 @@ async function getCourses(): Promise<CourseType[]> {
 export default async function Course() {
 	const courses = await getCourses()
 	return (
-		<div className="md:max-w-7xl flex flex-col self-center items-start justify-center w-full">
-			<div className="flex justify-center  w-full  p-14">
-				<p className="text-5xl">Cursos</p>
-			</div>
+		<PageContainer>
+			<PageTitle>Cursos</PageTitle>
 			<div className="min-h-screen w-full ">
 				<div className="grid grid-cols-12 gap-4 w-full flex-wrap">
 					{courses && courses!?.map((course: CourseType) => {
@@ -33,6 +33,6 @@ export default async function Course() {
 					}
 				</div>
 			</div>
-		</div>
+		</PageContainer>
 	)
 }

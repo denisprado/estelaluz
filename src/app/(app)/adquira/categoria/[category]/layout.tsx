@@ -1,3 +1,7 @@
+import CardListContainer from "@/components/CardListContainer";
+import LayoutContainer from "@/components/LayoutContainer";
+import PageContainer from "@/components/PageContainer";
+import { PageTitle } from "@/components/PageTitle";
 import ProductCategories from "@/components/ProductCategories";
 import { getCategories } from "@/helpers/functions";
 import { Product } from "@/payload-types";
@@ -34,20 +38,23 @@ export default async function RootLayout({
 }>) {
 	const productCategories = await getCategories('categoryProduct') as Product[];
 	return (
-		<div className="flex items-start justify-center min-h-screen w-full m-1 pt-16">
-			<div className="md:max-w-7xl flex flex-col items-start justify-center w-full gap-8">
-				<div className="flex flex-col gap-8 justify-center w-full pt-8 md:w-1/2">
-					<p className="text-3xl">
-						ADQUIRA UMA OBRA
-					</p>
-					<p>Cada peça que compartilho com vocês é uma extensão da minha jornada pessoal e das minhas experiências de vida. Meus murais capturam a essência das histórias que encontro ao longo do caminho, enquanto minhas pinturas exploram a interação entre forma e cor em um espaço ampliado.</p>
-				</div>
+		<LayoutContainer>
+			<div className="md:max-w-7xl flex flex-col self-start items-start justify-start w-full">
+				<PageContainer>
+					<div className="flex flex-col gap-8 justify-start w-full py-8 md:w-1/2">
 
-				<ProductCategories productCategories={productCategories}></ProductCategories>
-				<div className="grid grid-cols-12 gap-4 w-full flex-wrap">
-					{children}
-				</div>
+						<PageTitle align="start">
+							ADQUIRA UMA OBRA
+						</PageTitle>
+						<p>Cada peça que compartilho com vocês é uma extensão da minha jornada pessoal e das minhas experiências de vida. Meus murais capturam a essência das histórias que encontro ao longo do caminho, enquanto minhas pinturas exploram a interação entre forma e cor em um espaço ampliado.</p>
+
+						<ProductCategories productCategories={productCategories}></ProductCategories>
+					</div>
+					<CardListContainer>
+						{children}
+					</CardListContainer>
+				</PageContainer>
 			</div>
-		</div>
+		</LayoutContainer >
 	);
 }

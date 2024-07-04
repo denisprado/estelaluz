@@ -25,7 +25,7 @@ const Card = ({ category, post }: { category?: string, post: Work | Product }) =
 					</Image>
 				</div>
 			</Link>
-			<div className="flex flex-row justify-between gap-4">
+			<div className="flex flex-row justify-between gap-4 py-2 px-1">
 				<TextLink text={post.title!} url={url} />
 				<div className="flex flex-col text-right">
 					<div>

@@ -5,6 +5,9 @@ import { Work as WorkType } from "@/payload-types";
 import configPromise from '@payload-config';
 import { getPayloadHMR } from "@payloadcms/next/utilities";
 import Map from '@/components/Map'
+import PageContainer from "@/components/PageContainer";
+import CardListContainer from "@/components/CardListContainer";
+import { PageTitle } from "@/components/PageTitle";
 
 
 export default async function Work({ params }: { params: { slug: string } }) {
@@ -20,14 +23,12 @@ export default async function Work({ params }: { params: { slug: string } }) {
 			const gallery: WorkType['gallery'] = work?.gallery as WorkType['gallery'];
 
 			return (
-				<div key={work.id} className="md:max-w-7xl flex flex-col self-center items-start justify-start w-full gap-16 mt-8">
+				<PageContainer key={work.id} className="mt-8">
 					<div className="flex justify-center w-full min-h-96">
 						<EmblaCarousel gallery={gallery} />
 					</div>
 
-					<div className="flex justify-start w-full">
-						<p className="text-5xl font-extrabold">{title}</p>
-					</div>
+					<PageTitle caps={''} align="start">{title}</PageTitle>
 
 					<div className="grid grid-cols-12 border justify-center w-full gap-8">
 						<div className="col-span-7">
@@ -40,21 +41,21 @@ export default async function Work({ params }: { params: { slug: string } }) {
 
 					{
 						allWorksExceptThis.length > 0 && (
-							<div className="md:max-w-7xl flex flex-col self-center items-start justify-center w-full">
+							<PageContainer>
 								<div className="flex justify-center w-full p-14 divide-x-4">
 									<p className="text-3xl">Outros Trabalhos na Categoria {typeof category !== 'number' ? category?.title! : ''}</p>
 								</div>
-								<div className="min-h-screen w-full">
-									<div className="grid grid-cols-12 p-4 gap-4 w-full flex-wrap">
+								<div className="w-full">
+									<CardListContainer>
 										{allWorksExceptThis.map((work) =>
 											<Card post={work} key={work.id} />
 										)}
-									</div>
+									</CardListContainer>
 								</div>
-							</div>
+							</PageContainer>
 						)
 					}
-				</div >
+				</PageContainer >
 			);
 		})
 	);

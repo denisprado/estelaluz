@@ -5,6 +5,8 @@ import { Profile } from '@/payload-types'
 import Image from "next/image";
 import imageLoader from "@/helpers/loader";
 import { getUrl } from "@/helpers/functions";
+import PageContainer from "@/components/PageContainer";
+import { PageTitle } from "@/components/PageTitle";
 
 async function getProfile(): Promise<Profile> {
 	const payload = await getPayloadHMR({ config: configPromise })
@@ -21,13 +23,14 @@ const SobreHome = async () => {
 	const { name, description, image, curriculum, press, phone } = profile
 	const src = getUrl(image)
 	return (
-		<div className="md:max-w-7xl flex flex-col self-center items-start justify-center w-full mt-8">
+		<PageContainer>
+			<PageTitle align="start" caps="">{name}</PageTitle>
 			<div className="grid grid-cols-12 gap-8">
-				<div className="relative col-span-4">
-					<Image priority loader={imageLoader} src={src} alt="Imagem da Estela" fill objectFit="contain" objectPosition="top" />
+				<div className="relative col-span-4 rounded-3xl h-5/6">
+					<Image priority loader={imageLoader} src={src} alt="Imagem da Estela" fill objectFit="cover" objectPosition="center" className=" rounded-3xl" />
 				</div>
 				<div className="flex flex-col gap-8 col-span-8">
-					<p className="font-bold text-5xl">{name}</p>
+
 					<div>{description}</div>
 
 					<div className="flex flex-col gap-4">
@@ -55,7 +58,7 @@ const SobreHome = async () => {
 					</div>
 				</div>
 			</div>
-		</div>
+		</PageContainer>
 	)
 }
 

@@ -16,6 +16,14 @@ export default async function Header() {
 
 				<div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse items-center">
 					<ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700 mr-4">
+						{data.map(cat => {
+							const title: string = cat.title as string
+							return (
+								<li key={cat.id}>
+									<TextLink url={`/${cat.slug}`} text={title.toLowerCase() as string}></TextLink>
+								</li>
+							)
+						})}
 						<li>
 							<TextLink url={"/cursos"} text={"cursos"} />
 						</li>
@@ -35,20 +43,9 @@ export default async function Header() {
 						</svg>
 					</button>
 				</div>
-				<div className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
-					<ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-						{data.map(cat => {
-							const title: string = cat.title as string
-							return (
-								<li key={cat.id}>
-									<TextLink url={`/${cat.slug}`} text={title.toLowerCase() as string}></TextLink>
-								</li>
-							)
-						})}
 
-					</ul>
-				</div>
 			</div>
+
 		</nav>
 	)
 }

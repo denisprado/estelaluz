@@ -1,18 +1,22 @@
 import type { Metadata } from "next";
-import { Montserrat_Alternates } from "next/font/google";
+import { Montserrat_Alternates, Montserrat } from "next/font/google";
 import "./globals.css";
 import "./embla.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import FloatBtn from "@/components/WhatsAppBtn";
 
 const montserrat_alternates = Montserrat_Alternates({
 	subsets: ["latin-ext"],
-	weight: ["100", "400",]
+	weight: ["100", "400", '700']
 });
+
+
 
 export const metadata: Metadata = {
 	title: "Estela Luz",
 	description: "Portfolio",
+
 };
 
 export default function RootLayout({
@@ -26,6 +30,7 @@ export default function RootLayout({
 				<Header />
 				{children}
 				<Footer />
+				<FloatBtn />
 			</body>
 		</html>
 	);
