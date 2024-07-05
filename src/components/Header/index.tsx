@@ -9,7 +9,7 @@ export default async function Header() {
 	const data = await getCategories('categoryWork')
 	return (
 		<nav className="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
-			<div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto py-4 px-2">
+			<div className="w-full flex flex-wrap items-center justify-between mx-auto py-3 px-8">
 				<Link href="/" className="flex items-center rtl:space-x-reverse">
 					<Logo></Logo>
 				</Link>
