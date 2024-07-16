@@ -6,7 +6,7 @@ import { PageTitle } from "@/components/PageTitle";
 import { Product, Work } from "@/payload-types";
 import { getPayloadHMR } from "@payloadcms/next/utilities";
 import config from "@payload-config";
-import serialize from "@/helpers/serialize";
+import { serializeLexical } from "@/helpers/serialize";
 
 
 export default async function ProductPage({ params }: { params: { slug: string } }) {
@@ -24,7 +24,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
 							<PageTitle align="start">{title}</PageTitle>
 						</div>
 						<div className="col-span-6">
-							<EmblaCarousel tech_description={serialize(technical_description)} gallery={gallery} />
+							<EmblaCarousel tech_description={technical_description && serializeLexical({ nodes: technical_description?.root?.children })} gallery={gallery} />
 						</div>
 
 
@@ -32,7 +32,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
 
 							<div className="grid grid-cols-12 justify-center w-full gap-8">
 								<div className="col-span-12">
-									{serialize(description)}
+									{description && serializeLexical({ nodes: description?.root?.children })}
 								</div>
 								<div className="flex flex-col text-right border">
 									<div className="flex flex-row">

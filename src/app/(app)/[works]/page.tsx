@@ -34,7 +34,7 @@ async function getPost(cat: string, collection: string): Promise<WorkType[] | Wo
 export default async function Work({ params }: { params: { works: string; }; }) {
 	const works = await getPost(params.works, 'works') as WorkType[];
 
-	const categoryTitle = typeof works[0].category !== 'number' ? works[0].category?.title : ''
+	const categoryTitle = typeof works[0]?.category !== 'number' ? works[0]?.category?.title : ''
 
 	if (!works) {
 		return <Loading />;

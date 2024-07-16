@@ -9,7 +9,7 @@ import imageLoader from '@/helpers/loader'
 type PropType = {
 	gallery: Work['gallery']
 	options?: EmblaOptionsType,
-	tech_description: ReactNode
+	tech_description: any
 }
 
 const EmblaCarousel: React.FC<PropType> = (props) => {
@@ -67,10 +67,10 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
 				</div>
 			</div>
 
-			{gallery!.length > 1 && <div className="embla-thumbs">
+			{<div className="embla-thumbs">
 				<div className="embla-thumbs__viewport" ref={emblaThumbsRef}>
 
-					<div className="embla-thumbs__container">
+					{gallery!.length > 1 && <div className="embla-thumbs__container">
 						{gallery!.map((slide, i) => {
 							const src = getUrl(slide.image)
 							return (
@@ -83,7 +83,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
 								/>
 							)
 						})}
-					</div>
+					</div>}
 					<div className='flex flex-col mr-[var(--thumbs-slide-spacing)]'>{tech_description}</div>
 				</div>
 			</div>}

@@ -9,7 +9,7 @@ import Map from '@/components/Map'
 import PageContainer from "@/components/PageContainer";
 import CardListContainer from "@/components/CardListContainer";
 import { PageTitle } from "@/components/PageTitle";
-import serialize from "@/helpers/serialize";
+import { serializeLexical } from "@/helpers/serialize";
 
 
 export default async function Work({ params }: { params: { slug: string } }) {
@@ -27,7 +27,7 @@ export default async function Work({ params }: { params: { slug: string } }) {
 			return (
 				<PageContainer key={work.id} className="mt-4">
 					<div className="flex justify-center w-full min-h-96 relative">
-						<EmblaCarousel gallery={gallery} tech_description={serialize(technical_description)} />
+						<EmblaCarousel gallery={gallery} tech_description={technical_description && serializeLexical({ nodes: technical_description?.root?.children })} />
 
 					</div>
 
@@ -35,7 +35,7 @@ export default async function Work({ params }: { params: { slug: string } }) {
 
 					<div className="grid grid-cols-12 border justify-center w-full gap-4 md:gap-6 lg:gap-8">
 						<div className="col-span-full md:col-span-7">
-							{serialize(description)}
+							{serializeLexical({ nodes: description?.root?.children })}
 						</div>
 						<div className="col-span-full md:col-span-5">
 							<Map hasCoordinates={hasCoordinates} work={work}></Map>
