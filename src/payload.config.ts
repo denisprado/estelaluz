@@ -1,6 +1,5 @@
 // storage-adapter-import-placeholder
 import { postgresAdapter } from "@payloadcms/db-postgres";
-import { slateEditor } from "@payloadcms/richtext-slate";
 import path from "path";
 import { pt } from "payload/i18n/pt";
 import sharp from "sharp";
@@ -93,7 +92,7 @@ export default buildConfig({
     Products,
     CategoryProduct,
   ],
-  editor: slateEditor({}),
+  editor: lexicalEditor({}),
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
     outputFile: path.resolve(dirname, "payload-types.ts"),
@@ -122,3 +121,8 @@ export default buildConfig({
     }),
   ],
 });
+function lexicalEditor(arg0: {}):
+  | import("payload").RichTextAdapterProvider<any, any, any>
+  | undefined {
+  throw new Error("Function not implemented.");
+}
