@@ -1,7 +1,7 @@
 
 import { Work as WorkType } from "@/payload-types";
-import configPromise from '@payload-config';
-import { getPayloadHMR } from '@payloadcms/next/utilities';
+import { getPayloadHMR } from "@payloadcms/next/utilities";
+import config from "@payload-config";
 import Card from '@/components/Card';
 import Loading from "./loading";
 import PageContainer from "@/components/PageContainer";
@@ -9,7 +9,7 @@ import CardListContainer from "@/components/CardListContainer";
 import { PageTitle } from "@/components/PageTitle";
 
 async function getPost(cat: string, collection: string): Promise<WorkType[] | WorkType[]> {
-	const payload = await getPayloadHMR({ config: configPromise })
+	const payload = await getPayloadHMR({ config })
 	const posts = await payload.find({
 		collection: collection,
 		// where: {
@@ -34,13 +34,15 @@ async function getPost(cat: string, collection: string): Promise<WorkType[] | Wo
 export default async function Work({ params }: { params: { works: string; }; }) {
 	const works = await getPost(params.works, 'works') as WorkType[];
 
+	const categoryTitle = typeof works[0].category !== 'number' ? works[0].category?.title : ''
+
 	if (!works) {
 		return <Loading />;
 	}
 
 	return (
 		<PageContainer>
-			<PageTitle>{params.works}</PageTitle>
+			<PageTitle align="start">{categoryTitle}</PageTitle>
 			<div className="min-h-screen w-full ">
 				<CardListContainer>
 					{works && works!?.map((work: WorkType) =>

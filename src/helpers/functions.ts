@@ -6,7 +6,7 @@ import {
   Work,
 } from "@/payload-types";
 import { getPayloadHMR } from "@payloadcms/next/utilities";
-import configPromise from "@payload-config";
+import config from "@payload-config";
 
 export function getUrl(image: Media | number) {
   // const src =
@@ -43,7 +43,7 @@ export const hasCoordinates = (
 export async function getCategories(
   collection: "categoryWork" | "categoryProduct"
 ): Promise<CategoryProduct[] | CategoryWork[]> {
-  const payload = await getPayloadHMR({ config: configPromise });
+  const payload = await getPayloadHMR({ config });
   const data = await payload.find<"categoryWork" | "categoryProduct">({
     collection: collection,
   });

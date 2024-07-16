@@ -5,11 +5,12 @@ import { PageTitle } from "@/components/PageTitle";
 import ProductCategories from "@/components/ProductCategories";
 import { getCategories } from "@/helpers/functions";
 import { Product } from "@/payload-types";
-import configPromise from '@payload-config';
 import { getPayloadHMR } from "@payloadcms/next/utilities";
+import config from "@payload-config";
+
 
 async function getPosts(cat: string, collection: string): Promise<Product[] | Product[]> {
-	const payload = await getPayloadHMR({ config: configPromise })
+	const payload = await getPayloadHMR({ config })
 	const posts = await payload.find({
 		collection: collection,
 		// where: {
@@ -36,7 +37,7 @@ export default async function RootLayout({
 		category?: string;
 	};
 }>) {
-	const productCategories = await getCategories('categoryProduct') as Product[];
+	const productCategories = await getCategories('categoryProduct');
 	return (
 		<LayoutContainer>
 			<div className="md:max-w-7xl flex flex-col self-start items-start justify-start w-full">

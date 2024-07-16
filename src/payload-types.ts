@@ -138,8 +138,12 @@ export interface Work {
   id: number;
   title: string;
   slug?: string | null;
-  description: string;
-  technical_description: string;
+  description: {
+    [k: string]: unknown;
+  }[];
+  technical_description: {
+    [k: string]: unknown;
+  }[];
   gallery?:
     | {
         image: number | Media;
@@ -188,8 +192,14 @@ export interface Product {
   id: number;
   title: string;
   slug?: string | null;
-  description: string;
-  technical_description?: string | null;
+  description: {
+    [k: string]: unknown;
+  }[];
+  technical_description?:
+    | {
+        [k: string]: unknown;
+      }[]
+    | null;
   price?: number | null;
   stock?: number | null;
   product_category: number | CategoryProduct;

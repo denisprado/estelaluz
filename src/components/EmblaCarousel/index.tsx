@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback, ReactNode } from 'react'
 import { EmblaOptionsType } from 'embla-carousel'
 import useEmblaCarousel from 'embla-carousel-react'
 import { Thumb } from './ThumbsButton'
@@ -8,11 +8,12 @@ import Image from 'next/image'
 import imageLoader from '@/helpers/loader'
 type PropType = {
 	gallery: Work['gallery']
-	options?: EmblaOptionsType
+	options?: EmblaOptionsType,
+	tech_description: ReactNode
 }
 
 const EmblaCarousel: React.FC<PropType> = (props) => {
-	const { gallery, options } = props
+	const { gallery, options, tech_description } = props
 	const [selectedIndex, setSelectedIndex] = useState(0)
 	const [emblaMainRef, emblaMainApi] = useEmblaCarousel(options)
 	const [emblaThumbsRef, emblaThumbsApi] = useEmblaCarousel({
@@ -68,6 +69,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
 
 			{gallery!.length > 1 && <div className="embla-thumbs">
 				<div className="embla-thumbs__viewport" ref={emblaThumbsRef}>
+
 					<div className="embla-thumbs__container">
 						{gallery!.map((slide, i) => {
 							const src = getUrl(slide.image)
@@ -82,6 +84,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
 							)
 						})}
 					</div>
+					<div className='flex flex-col mr-[var(--thumbs-slide-spacing)]'>{tech_description}</div>
 				</div>
 			</div>}
 		</div>

@@ -36,7 +36,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-, "src/payload-types.ts_", "src/app/(app)/adquira/categoria/[category]/[slug]/page.tsx_/(app)/adquira/page.tsx_", "src/app/(app)/adquira/loading.tsx"  ],
+, "src/payload-types.ts_", "src/app/(app)/adquira/categoria/[category]/[slug]/page.tsx_/(app)/adquira/page.tsx_", "src/app/(app)/adquira/loading.tsx", "src/helpers/serialize.js"  ],
   "exclude": [
     "node_modules"
   ]

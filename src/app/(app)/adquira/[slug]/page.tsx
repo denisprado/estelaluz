@@ -4,14 +4,16 @@ import EmblaCarousel from "@/components/EmblaCarousel";
 import PageContainer from "@/components/PageContainer";
 import { PageTitle } from "@/components/PageTitle";
 import { Product, Work } from "@/payload-types";
-import configPromise from '@payload-config';
 import { getPayloadHMR } from "@payloadcms/next/utilities";
+import config from "@payload-config";
+import serialize from "@/helpers/serialize";
+
 
 export default async function ProductPage({ params }: { params: { slug: string } }) {
 	const allProducts = await getPost(params.slug, 'products');
 	return (
 		allProducts.map(async (product: any) => {
-			const { title, description, product_category, price } = product as Product;
+			const { title, description, product_category, price, technical_description } = product as Product;
 			const id = product?.id ? product?.id as number : null;
 			const allProductsExceptThis: Product[] = await getPost(params.slug, 'products', id);
 			const gallery: Product['gallery'] = product?.gallery as Product['gallery'];
@@ -19,10 +21,10 @@ export default async function ProductPage({ params }: { params: { slug: string }
 				<PageContainer key={product.id}>
 					<div className="grid grid-cols-12 gap-8 justify-start items-start">
 						<div className="col-span-12">
-							<PageTitle caps="" align="start">{title}</PageTitle>
+							<PageTitle align="start">{title}</PageTitle>
 						</div>
 						<div className="col-span-6">
-							<EmblaCarousel gallery={gallery} />
+							<EmblaCarousel tech_description={serialize(technical_description)} gallery={gallery} />
 						</div>
 
 
@@ -30,7 +32,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
 
 							<div className="grid grid-cols-12 justify-center w-full gap-8">
 								<div className="col-span-12">
-									<p className="text-base">{description}</p>
+									{serialize(description)}
 								</div>
 								<div className="flex flex-col text-right border">
 									<div className="flex flex-row">
@@ -68,7 +70,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
 
 
 async function getPost(slug: string | null, collection: string, excludeProductId?: number | null): Promise<Product[]> {
-	const payload = await getPayloadHMR({ config: configPromise });
+	const payload = await getPayloadHMR({ config });
 	const where: any = {};
 
 	if (excludeProductId === undefined || excludeProductId === null) {
@@ -88,7 +90,7 @@ async function getPost(slug: string | null, collection: string, excludeProductId
 		where: where,
 	});
 
-	const dataOfPost = data.docs.filter(doc => doc.slug === slug)
+	const dataOfPost = data.docs.filter((doc) => doc.slug === slug)
 
 	//return data.docs as unknown as Product[]
 	return excludeProductId ? data.docs as unknown as Product[] : dataOfPost as unknown as Product[];

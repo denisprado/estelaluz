@@ -1,15 +1,15 @@
 
-import { getPayloadHMR } from "@payloadcms/next/utilities"
-import configPromise from '@payload-config';
-import { Profile } from '@/payload-types'
-import Image from "next/image";
-import imageLoader from "@/helpers/loader";
-import { getUrl } from "@/helpers/functions";
 import PageContainer from "@/components/PageContainer";
 import { PageTitle } from "@/components/PageTitle";
+import { getUrl } from "@/helpers/functions";
+import imageLoader from "@/helpers/loader";
+import { Profile } from '@/payload-types';
+import { getPayloadHMR } from "@payloadcms/next/utilities";
+import config from "@payload-config";
+import Image from "next/image";
 
 async function getProfile(): Promise<Profile> {
-	const payload = await getPayloadHMR({ config: configPromise })
+	const payload = await getPayloadHMR({ config })
 	const courses = await payload.find({
 		collection: 'profile',
 		limit: 1
@@ -26,12 +26,12 @@ const SobreHome = async () => {
 		<PageContainer>
 			<PageTitle align="start" caps="">{profile?.name!}</PageTitle>
 			<div className="grid grid-cols-12 gap-8">
-				<div className="relative col-span-4 rounded-3xl h-5/6">
-					<Image priority loader={imageLoader} src={src} alt="Imagem da Estela" fill objectFit="cover" objectPosition="center" className=" rounded-3xl" />
+				<div className="relative col-span-12 sm:col-span-4 rounded-3xl  h-[300px] sm:h-5/6">
+					<Image priority loader={imageLoader} src={src} alt="Imagem da Estela" fill objectFit="cover" objectPosition="center" className="rounded-3xl mx-2 sm:mx-0" />
 				</div>
-				<div className="flex flex-col gap-8 col-span-8">
+				<div className="flex flex-col gap-8 col-span-12 sm:col-span-8 mx-2 sm:mx-0">
 
-					<div>{profile?.description}</div>
+					<p className="leading-relaxed text-lg">{profile?.description}</p>
 
 					<div className="flex flex-col gap-4">
 						<p className="font-bold text-2xl">Curriculum Vitae</p>
@@ -39,7 +39,7 @@ const SobreHome = async () => {
 							return (
 								<div className="flex flex-col" key={cv.id}>
 									<p className="font-bold">{cv.title}</p>
-									<p>{cv.description}</p>
+									<p className="leading-relaxed text-lg">{cv.description}</p>
 								</div>
 							)
 						})}

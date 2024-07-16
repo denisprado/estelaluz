@@ -5,11 +5,12 @@ import path from "path";
 import { pt } from "payload/i18n/pt";
 import sharp from "sharp";
 import { fileURLToPath } from "url";
-
-import configPromise from "@payload-config";
+import { nodemailerAdapter } from "@payloadcms/email-nodemailer";
 import { getPayloadHMR } from "@payloadcms/next/utilities";
+import config from "@payload-config";
 import { s3Storage } from "@payloadcms/storage-s3";
 import { buildConfig } from "payload";
+
 import {
   CategoryProduct,
   CategoryWork,
@@ -20,12 +21,13 @@ import {
   Works,
 } from "./collections";
 import { Profile } from "./collections/Profiles";
+import Logo from "./components/Logo";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
 async function getData(cat: number) {
-  const payload = await getPayloadHMR({ config: configPromise });
+  const payload = await getPayloadHMR({ config });
   const data = await payload.find({
     collection: "categoryWork",
     where: {
@@ -40,8 +42,19 @@ async function getData(cat: number) {
 export default buildConfig({
   cors: "*",
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL,
+  email: nodemailerAdapter(),
   admin: {
     user: Users.slug,
+    dateFormat: "dd/mm/yyyy",
+    meta: {
+      titleSuffix: "- Estela Luz",
+    },
+    components: {
+      graphics: {
+        Logo,
+      },
+    },
+
     livePreview: {
       breakpoints: [
         {

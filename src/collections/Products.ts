@@ -18,12 +18,12 @@ export const Products: CollectionConfig = {
       fields: [
         {
           name: "description",
-          type: "textarea",
+          type: "richText",
           required: true,
         },
         {
           name: "technical_description",
-          type: "textarea",
+          type: "richText",
         },
       ],
     },

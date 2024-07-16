@@ -2,12 +2,14 @@ import Card from "@/components/Card";
 import EmblaCarousel from "@/components/EmblaCarousel";
 import { hasCoordinates } from "@/helpers/functions";
 import { Work as WorkType } from "@/payload-types";
-import configPromise from '@payload-config';
 import { getPayloadHMR } from "@payloadcms/next/utilities";
+import config from "@payload-config";
+
 import Map from '@/components/Map'
 import PageContainer from "@/components/PageContainer";
 import CardListContainer from "@/components/CardListContainer";
 import { PageTitle } from "@/components/PageTitle";
+import serialize from "@/helpers/serialize";
 
 
 export default async function Work({ params }: { params: { slug: string } }) {
@@ -17,24 +19,25 @@ export default async function Work({ params }: { params: { slug: string } }) {
 	return (
 
 		allWorks.map(async (work: any) => {
-			const { title, description, category } = work as WorkType;
+			const { title, description, category, technical_description } = work as WorkType;
 			const id = work?.id ? work?.id as number : null;
 			const allWorksExceptThis: WorkType[] = await getPost(params.slug, 'works', id);
 			const gallery: WorkType['gallery'] = work?.gallery as WorkType['gallery'];
 
 			return (
-				<PageContainer key={work.id} className="mt-8">
-					<div className="flex justify-center w-full min-h-96">
-						<EmblaCarousel gallery={gallery} />
+				<PageContainer key={work.id} className="mt-4">
+					<div className="flex justify-center w-full min-h-96 relative">
+						<EmblaCarousel gallery={gallery} tech_description={serialize(technical_description)} />
+
 					</div>
 
-					<PageTitle caps={''} align="start">{title}</PageTitle>
+					<PageTitle align="start">{title}</PageTitle>
 
-					<div className="grid grid-cols-12 border justify-center w-full gap-8">
-						<div className="col-span-7">
-							<p className="text-base">{description}</p>
+					<div className="grid grid-cols-12 border justify-center w-full gap-4 md:gap-6 lg:gap-8">
+						<div className="col-span-full md:col-span-7">
+							{serialize(description)}
 						</div>
-						<div className="col-span-5">
+						<div className="col-span-full md:col-span-5">
 							<Map hasCoordinates={hasCoordinates} work={work}></Map>
 						</div>
 					</div>
@@ -63,7 +66,7 @@ export default async function Work({ params }: { params: { slug: string } }) {
 
 
 async function getPost(slug: string | null, collection: string, excludeWorkId?: number | null): Promise<WorkType[]> {
-	const payload = await getPayloadHMR({ config: configPromise });
+	const payload = await getPayloadHMR({ config });
 	const where: any = {};
 
 	if (excludeWorkId === undefined || excludeWorkId === null) {

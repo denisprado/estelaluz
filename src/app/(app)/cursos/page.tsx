@@ -2,12 +2,12 @@
 import PageContainer from "@/components/PageContainer";
 import { PageTitle } from "@/components/PageTitle";
 import { Course as CourseType } from "@/payload-types";
-import configPromise from '@payload-config';
-import { getPayloadHMR } from '@payloadcms/next/utilities';
+import { getPayloadHMR } from "@payloadcms/next/utilities";
+import config from "@payload-config";
 import classNames from 'classnames';
 
 async function getCourses(): Promise<CourseType[]> {
-	const payload = await getPayloadHMR({ config: configPromise })
+	const payload = await getPayloadHMR({ config })
 	const courses = await payload.find({
 		collection: 'courses',
 	})
