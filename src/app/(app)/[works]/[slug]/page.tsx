@@ -1,7 +1,7 @@
 import Card from "@/components/Card";
 import EmblaCarousel from "@/components/EmblaCarousel";
 import { hasCoordinates } from "@/helpers/functions";
-import { Work as WorkType } from "@/payload-types";
+import { CategoryWork, Work as WorkType } from "@/payload-types";
 import { getPayloadHMR } from "@payloadcms/next/utilities";
 import config from "@payload-config";
 
@@ -10,19 +10,28 @@ import PageContainer from "@/components/PageContainer";
 import CardListContainer from "@/components/CardListContainer";
 import { PageTitle } from "@/components/PageTitle";
 import { serializeLexical } from "@/helpers/serialize";
+import classNames from "classnames";
+import { TypeWithID } from "payload";
 
 
 export default async function Work({ params }: { params: { slug: string } }) {
 
 	const allWorks = await getPost(params.slug, 'works');
 
+	console.log(allWorks[0]?.category!)
+
+	const cat = allWorks[0]?.category && typeof allWorks[0]?.category !== 'number' && allWorks[0]?.category !== undefined && allWorks[0]?.category !== null ? allWorks[0]?.category : {} as CategoryWork
+
+	const allWorksExceptThis: WorkType[] = await getPost(params.slug, 'works', allWorks[0]?.id, cat);
+
 	return (
 
 		allWorks.map(async (work: any) => {
-			const { title, description, category, technical_description } = work as WorkType;
-			const id = work?.id ? work?.id as number : null;
-			const allWorksExceptThis: WorkType[] = await getPost(params.slug, 'works', id);
+			const { title, description, technical_description, category } = work as WorkType;
+
 			const gallery: WorkType['gallery'] = work?.gallery as WorkType['gallery'];
+
+			const children = description?.root.children
 
 			return (
 				<PageContainer key={work.id} className="mt-4">
@@ -34,19 +43,19 @@ export default async function Work({ params }: { params: { slug: string } }) {
 					<PageTitle align="start">{title}</PageTitle>
 
 					<div className="grid grid-cols-12 justify-center w-full gap-4 md:gap-6 lg:gap-8">
-						<div className="col-span-full md:col-span-7">
+						{children && children.text && <div className="col-span-full md:col-span-7">
 							{serializeLexical({ nodes: description?.root?.children })}
-						</div>
-						<div className="col-span-full md:col-span-5">
-							<Map hasCoordinates={hasCoordinates} work={work}></Map>
+						</div>}
+						<div className={classNames("col-span-full md:col-span-5", children && !children.text && "col-span-full md:col-span-full")}>
+							<Map hasCoordinates={hasCoordinates} work={work} height="800"></Map>
 						</div>
 					</div>
 
 					{
 						allWorksExceptThis.length > 0 && (
 							<PageContainer>
-								<div className="flex justify-center w-full p-14 divide-x-4">
-									<p className="text-3xl">Outros Trabalhos na Categoria {typeof category !== 'number' ? category?.title! : ''}</p>
+								<div className="flex justify-start w-full pt-12 pb-6">
+									<p className="text-3xl">Outros trabalhos na categoria {typeof category !== 'number' ? category?.title! : ''}</p>
 								</div>
 								<div className="w-full">
 									<CardListContainer>
@@ -65,20 +74,22 @@ export default async function Work({ params }: { params: { slug: string } }) {
 }
 
 
-async function getPost(slug: string | null, collection: string, excludeWorkId?: number | null): Promise<WorkType[]> {
+async function getPost(slug: string | null, collection: string, excludeWorkId?: number | null, category?: CategoryWork): Promise<WorkType[]> {
 	const payload = await getPayloadHMR({ config });
 	const where: any = {};
 
 	if (excludeWorkId === undefined || excludeWorkId === null) {
-		where.slug = {
-			// equals: slug
-		};
+		// where.slug = {
+		// 	equals: slug
+		// };
+
 	}
 
 	if (excludeWorkId !== undefined && excludeWorkId !== null) {
 		where.id = {
 			not_equals: excludeWorkId,
 		};
+
 	}
 
 	const data = await payload.find({
@@ -86,7 +97,14 @@ async function getPost(slug: string | null, collection: string, excludeWorkId?: 
 		where: where,
 	});
 
+
 	const dataOfPost = data.docs.filter(doc => doc.slug === slug)
 
-	return excludeWorkId ? data.docs as unknown as WorkType[] : dataOfPost as unknown as WorkType[];
+	const dataOfSameInCat = data.docs.filter((doc: Record<string, unknown> & TypeWithID | WorkType) => {
+		const cat = doc.category as CategoryWork
+		const isSameCat = cat?.id === category?.id!
+		return isSameCat
+	})
+
+	return excludeWorkId ? dataOfSameInCat.slice(0, 4) as unknown as WorkType[] : dataOfPost.slice(0, 1) as unknown as WorkType[];
 }

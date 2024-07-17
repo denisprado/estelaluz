@@ -16,12 +16,10 @@ export const Works: CollectionConfig = {
     {
       name: "description",
       type: "richText",
-      required: true,
     },
     {
       name: "technical_description",
       type: "richText",
-      required: true,
     },
     {
       name: "gallery",

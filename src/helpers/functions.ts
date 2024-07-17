@@ -9,11 +9,12 @@ import { getPayloadHMR } from "@payloadcms/next/utilities";
 import config from "@payload-config";
 
 export function getUrl(image: Media | number) {
-  // const src =
-  //   typeof image !== "number"
-  //     ? `https://s3.amazonaws.com/` + "estelaluz" + "/" + image?.filename!
-  //     : "/media/";
   const src = typeof image !== "number" ? image?.filename! : "/media/";
+  return src;
+}
+export function getThumUrl(image: Media | number) {
+  const src =
+    typeof image !== "number" ? image?.sizes?.thumbnail?.filename! : "/media/";
   return src;
 }
 

@@ -19,7 +19,6 @@ export const Products: CollectionConfig = {
         {
           name: "description",
           type: "richText",
-          required: true,
         },
         {
           name: "technical_description",

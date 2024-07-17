@@ -2,13 +2,12 @@
 
 import PageContainer from "@/components/PageContainer"
 import { PageTitle } from "@/components/PageTitle"
-import { FormEvent, Suspense, useState } from "react"
+import { FormEvent, useState } from "react"
 
-const Contato = ({ params }: { params: { product: string | '' } }) => {
+const Contato = () => {
 	const [nome, setNome] = useState('')
 	const [email, setEmail] = useState('')
-
-	const [mensagem, setMensagem] = useState<string | ''>(decodeURIComponent(params.product))
+	const [mensagem, setMensagem] = useState('')
 
 	const handleSubmit = (event: FormEvent) => {
 		event.preventDefault();

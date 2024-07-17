@@ -20,7 +20,7 @@ export default async function Course() {
 	return (
 		<PageContainer>
 			<PageTitle>Cursos</PageTitle>
-			<div className="w-full ">
+			<div className="w-full">
 				<div className="grid grid-cols-12 gap-4 w-full flex-wrap">
 					{courses && courses!?.map((course: CourseType) => {
 						const bgColor = classNames('col-span-12 sm:col-span-6 md:col-span-4 rounded-3xl flex items-center justify-center border-4 p-4 h-[300px]')

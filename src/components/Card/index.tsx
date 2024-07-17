@@ -1,4 +1,4 @@
-import { getUrl } from "@/helpers/functions";
+import { getThumUrl, getUrl } from "@/helpers/functions";
 import imageLoader from "@/helpers/loader";
 import { Product, Work } from "@/payload-types";
 import Image from "next/image";
@@ -43,7 +43,7 @@ const Card = ({ category, post }: { category?: string, post: Work | Product }) =
 export function getThumbSrc(post: Work | Product) {
 	const gallery = post.gallery!
 	const image = gallery[0]?.image!
-	const src = getUrl(image)
+	const src = getThumUrl(image)
 	return src;
 }
 

@@ -138,7 +138,7 @@ export interface Work {
   id: number;
   title: string;
   slug?: string | null;
-  description: {
+  description?: {
     root: {
       type: string;
       children: {
@@ -152,8 +152,8 @@ export interface Work {
       version: number;
     };
     [k: string]: unknown;
-  };
-  technical_description: {
+  } | null;
+  technical_description?: {
     root: {
       type: string;
       children: {
@@ -167,7 +167,7 @@ export interface Work {
       version: number;
     };
     [k: string]: unknown;
-  };
+  } | null;
   gallery?:
     | {
         image: number | Media;
@@ -216,7 +216,7 @@ export interface Product {
   id: number;
   title: string;
   slug?: string | null;
-  description: {
+  description?: {
     root: {
       type: string;
       children: {
@@ -230,7 +230,7 @@ export interface Product {
       version: number;
     };
     [k: string]: unknown;
-  };
+  } | null;
   technical_description?: {
     root: {
       type: string;
