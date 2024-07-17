@@ -32,9 +32,13 @@ export default function RootLayout({
 		<html lang="pt">
 
 			<body className={montserrat.className + ' overflow-x-hidden ' + lato.className}>
-				<Header />
-				{children}
-				<Footer />
+				<div className="grid min-h-[100dvh] grid-rows-[auto_1fr_auto]">
+					<Header />
+					<main>
+						{children}
+					</main>
+					<Footer />
+				</div>
 				<FloatBtn />
 			</body>
 		</html>

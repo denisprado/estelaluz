@@ -43,7 +43,7 @@ export default async function Work({ params }: { params: { works: string; }; }) 
 	return (
 		<PageContainer>
 			<PageTitle align="start">{categoryTitle}</PageTitle>
-			<div className="min-h-screen w-full ">
+			<div className="w-full ">
 				<CardListContainer>
 					{works && works!?.map((work: WorkType) =>
 						<Card category={params.works!} post={work} key={work.id} />

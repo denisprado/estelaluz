@@ -51,7 +51,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
 									<div className="flex justify-center w-full p-14 divide-x-4">
 										<p className="text-3xl">Outros Produtos na Categoria {typeof product_category !== 'number' ? product_category?.title! : ''}</p>
 									</div>
-									<div className="min-h-screen w-full">
+									<div className="w-full">
 										<CardListContainer>
 											{allProductsExceptThis.map((product) =>
 												<Card post={product} key={product.id} />

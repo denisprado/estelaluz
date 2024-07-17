@@ -3,7 +3,7 @@ import { ReactNode } from "react"
 
 const LayoutContainer = ({ children, debug = false }: { children: ReactNode, debug?: boolean }) => {
 	return (
-		<div className={classNames("flex flex-row items-start justify-center min-h-screen w-full m-1 pt-2 sm:pt-8", process.env.NODE_ENV === 'development' && debug && 'border border-red-600')}>{children}</div>
+		<div className={classNames("flex flex-row items-start justify-center w-full px-2 sm:px-4", process.env.NODE_ENV === 'development' && debug && 'border border-red-600')}>{children}</div>
 	)
 }
 

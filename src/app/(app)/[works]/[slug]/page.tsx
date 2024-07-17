@@ -33,7 +33,7 @@ export default async function Work({ params }: { params: { slug: string } }) {
 
 					<PageTitle align="start">{title}</PageTitle>
 
-					<div className="grid grid-cols-12 border justify-center w-full gap-4 md:gap-6 lg:gap-8">
+					<div className="grid grid-cols-12 justify-center w-full gap-4 md:gap-6 lg:gap-8">
 						<div className="col-span-full md:col-span-7">
 							{serializeLexical({ nodes: description?.root?.children })}
 						</div>
