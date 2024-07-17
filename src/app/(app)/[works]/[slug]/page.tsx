@@ -31,7 +31,6 @@ export default async function Work({ params }: { params: { slug: string } }) {
 
 			const gallery: WorkType['gallery'] = work?.gallery as WorkType['gallery'];
 
-			const children = description?.root.children
 
 			return (
 				<PageContainer key={work.id} className="mt-4">
@@ -42,11 +41,11 @@ export default async function Work({ params }: { params: { slug: string } }) {
 
 					<PageTitle align="start">{title}</PageTitle>
 
-					<div className="grid grid-cols-12 justify-center w-full gap-4 md:gap-6 lg:gap-8">
-						{children && children.text && <div className="col-span-full md:col-span-7">
-							{serializeLexical({ nodes: description?.root?.children })}
-						</div>}
-						<div className={classNames("col-span-full md:col-span-5", children && !children.text && "col-span-full md:col-span-full")}>
+					<div className="grid grid-cols-12 justify-center w-full gap-4 md:gap-4 lg:gap-6">
+						<div className="col-span-full">
+							{serializeLexical({ nodes: description!.root?.children })}
+						</div>
+						<div className={"col-span-full"}>
 							<Map hasCoordinates={hasCoordinates} work={work} height="800"></Map>
 						</div>
 					</div>
