@@ -93,6 +93,11 @@ export default buildConfig({
     Products,
     CategoryProduct,
   ],
+  upload: {
+    limits: {
+      fileSize: 6000000, // 5MB, written in bytes
+    },
+  },
   editor: lexicalEditor({}),
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
