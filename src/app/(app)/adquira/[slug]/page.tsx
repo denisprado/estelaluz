@@ -48,7 +48,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
 						{
 							allProductsExceptThis.length > 0 && (
 								<PageContainer>
-									<div className="flex justify-center w-full p-14 divide-x-4">
+									<div className="flex justify-start w-full pt-12 pb-6">
 										<p className="text-3xl">Outros Produtos na Categoria {typeof product_category !== 'number' ? product_category?.title! : ''}</p>
 									</div>
 									<div className="w-full">
