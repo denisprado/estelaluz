@@ -27,7 +27,7 @@ export default async function Work({ params }: { params: { slug: string } }) {
 	return (
 
 		allWorks.map(async (work: any) => {
-			const { title, description, technical_description, category } = work as WorkType;
+			const { title, description, technical_description, category, mapUrl } = work as WorkType;
 
 			const gallery: WorkType['gallery'] = work?.gallery as WorkType['gallery'];
 
@@ -45,9 +45,9 @@ export default async function Work({ params }: { params: { slug: string } }) {
 						<div className="col-span-full">
 							{serializeLexical({ nodes: description!.root?.children })}
 						</div>
-						<div className={"col-span-full"}>
+						{mapUrl && <div className={"col-span-full"}>
 							<Map work={work} height="800px"></Map>
-						</div>
+						</div>}
 					</div>
 
 					{
@@ -94,6 +94,7 @@ async function getPost(slug: string | null, collection: string, excludeWorkId?: 
 	const data = await payload.find({
 		collection: collection,
 		where: where,
+		sort: 'sticky',
 	});
 
 

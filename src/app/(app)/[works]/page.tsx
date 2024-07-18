@@ -12,6 +12,7 @@ async function getPost(cat: string, collection: string): Promise<WorkType[] | Wo
 	const payload = await getPayloadHMR({ config })
 	const posts = await payload.find({
 		collection: collection,
+		sort: 'sticky',
 		// where: {
 		// 	'category.slug': {
 		// 		equals: cat,

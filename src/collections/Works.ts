@@ -14,6 +14,10 @@ export const Works: CollectionConfig = {
     },
     slug,
     {
+      name: "sticky",
+      type: "checkbox",
+    },
+    {
       name: "description",
       type: "richText",
     },

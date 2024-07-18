@@ -138,6 +138,7 @@ export interface Work {
   id: number;
   title: string;
   slug?: string | null;
+  sticky?: boolean | null;
   description?: {
     root: {
       type: string;
