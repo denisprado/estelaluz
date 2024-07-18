@@ -39,24 +39,24 @@ export const Works: CollectionConfig = {
       relationTo: "categoryWork",
     },
     { name: "mapUrl", type: "text" },
-    {
-      name: "coordenadas",
-      type: "group",
-      fields: [
-        {
-          type: "row",
-          fields: [
-            {
-              name: "longitude",
-              type: "text",
-            },
-            {
-              name: "latitude",
-              type: "text",
-            },
-          ],
-        },
-      ],
-    },
+    // {
+    //   name: "coordenadas",
+    //   type: "group",
+    //   fields: [
+    //     {
+    //       type: "row",
+    //       fields: [
+    //         {
+    //           name: "longitude",
+    //           type: "text",
+    //         },
+    //         {
+    //           name: "latitude",
+    //           type: "text",
+    //         },
+    //       ],
+    //     },
+    //   ],
+    // },
   ],
 };

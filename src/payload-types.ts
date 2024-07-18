@@ -176,10 +176,6 @@ export interface Work {
     | null;
   category?: (number | null) | CategoryWork;
   mapUrl?: string | null;
-  coordenadas?: {
-    longitude?: string | null;
-    latitude?: string | null;
-  };
   updatedAt: string;
   createdAt: string;
 }
