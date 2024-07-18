@@ -3,10 +3,11 @@ import CardListContainer from "@/components/CardListContainer";
 import EmblaCarousel from "@/components/EmblaCarousel";
 import PageContainer from "@/components/PageContainer";
 import { PageTitle } from "@/components/PageTitle";
-import { Product, Work } from "@/payload-types";
+import { CategoryProduct, CategoryWork, Product, Work } from "@/payload-types";
 import { getPayloadHMR } from "@payloadcms/next/utilities";
 import config from "@payload-config";
 import { serializeLexical } from "@/helpers/serialize";
+import { TypeWithID } from "payload";
 
 
 export default async function ProductPage({ params }: { params: { slug: string } }) {
@@ -15,7 +16,8 @@ export default async function ProductPage({ params }: { params: { slug: string }
 		allProducts.map(async (product: any) => {
 			const { title, description, product_category, price, technical_description } = product as Product;
 			const id = product?.id ? product?.id as number : null;
-			const allProductsExceptThis: Product[] = await getPost(params.slug, 'products', id);
+			const cat = product_category && typeof product_category !== 'number' && product_category !== undefined && product_category !== null ? product_category : {} as CategoryProduct
+			const allProductsExceptThis: Product[] = await getPost(params.slug, 'products', id, cat);
 			const gallery: Product['gallery'] = product?.gallery as Product['gallery'];
 			return (
 				<PageContainer key={product.id}>
@@ -69,7 +71,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
 }
 
 
-async function getPost(slug: string | null, collection: string, excludeProductId?: number | null): Promise<Product[]> {
+async function getPost(slug: string | null, collection: string, excludeProductId?: number | null, category?: CategoryProduct): Promise<Product[]> {
 	const payload = await getPayloadHMR({ config });
 	const where: any = {};
 
@@ -92,8 +94,13 @@ async function getPost(slug: string | null, collection: string, excludeProductId
 
 	const dataOfPost = data.docs.filter((doc) => doc.slug === slug)
 
-	//return data.docs as unknown as Product[]
-	return excludeProductId ? data.docs as unknown as Product[] : dataOfPost as unknown as Product[];
+	const dataOfSameInCat = data.docs.filter((doc: Record<string, unknown> & TypeWithID | Product) => {
+		const cat = doc.product_category as CategoryWork
+		const isSameCat = cat?.id === category?.id!
+		return isSameCat
+	})
+
+	return excludeProductId ? dataOfSameInCat.slice(0, 4) as unknown as Product[] : dataOfPost.slice(0, 1) as unknown as Product[];
 }
 
 function isProduct(post: Work | Product): post is Product {
