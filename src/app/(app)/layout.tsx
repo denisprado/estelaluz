@@ -30,8 +30,8 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="pt">
-			<body className={montserrat.className + ' overflow-x-hidden ' + lato.className}>
-				<div className="grid min-h-[100dvh] grid-rows-[auto_1fr_auto]">
+			<body className={montserrat.className + ' overflow-x-hidden overflow-y-scroll ' + lato.className}>
+				<div className="grid min-h-[100dvh] grid-rows-[auto_1fr_auto] ">
 					<Header />
 					<main>
 						{children}

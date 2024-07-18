@@ -84,14 +84,14 @@ export default buildConfig({
     },
   },
   collections: [
-    Users,
     Profile,
     Works,
-    Courses,
     CategoryWork,
-    Media,
     Products,
     CategoryProduct,
+    Courses,
+    Media,
+    Users,
   ],
   upload: {
     limits: {

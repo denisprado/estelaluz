@@ -2,7 +2,7 @@
 export default function Home() {
 	return (
 		<main className="flex flex-col items-center justify-between">
-			<div className="z-10 w-full items-center justify-between font-mono text-sm lg:flex max-w-7xl pt-24">
+			<div className="z-10 w-full items-center justify-between font-mono text-sm lg:flex max-w-7xl pt-10">
 				<video muted autoPlay loop preload="none" className="rounded-3xl">
 					<source src="/video-home.mp4" type="video/mp4" />
 					<track kind="metadata" src="/trecho.vtt" default />

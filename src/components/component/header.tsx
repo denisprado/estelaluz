@@ -22,12 +22,11 @@ import { Button } from "@/components/ui/button"
 import Logo from "../Logo"
 import MenuItems from "../MenuItems"
 import { JSX, SVGProps } from "react"
-import ButtonLink from "../ButtonLink"
 
 export function Header() {
 	return (
 		<header className="sticky bg-white top-0 z-50 flex items-center justify-between px-4 py-3 bg-background border-b">
-			<Link href="#" className="flex items-center gap-2" prefetch={false}>
+			<Link href="/" className="flex items-center gap-2" prefetch={false}>
 				<Logo />
 
 			</Link>
