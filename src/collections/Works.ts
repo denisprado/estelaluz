@@ -34,6 +34,12 @@ export const Works: CollectionConfig = {
       ],
     },
     {
+      name: "category",
+      type: "relationship",
+      relationTo: "categoryWork",
+    },
+    { name: "mapUrl", type: "text" },
+    {
       name: "coordenadas",
       type: "group",
       fields: [
@@ -51,11 +57,6 @@ export const Works: CollectionConfig = {
           ],
         },
       ],
-    },
-    {
-      name: "category",
-      type: "relationship",
-      relationTo: "categoryWork",
     },
   ],
 };

@@ -46,7 +46,7 @@ export default async function Work({ params }: { params: { slug: string } }) {
 							{serializeLexical({ nodes: description!.root?.children })}
 						</div>
 						<div className={"col-span-full"}>
-							<Map hasCoordinates={hasCoordinates} work={work} height="800"></Map>
+							<Map work={work} height="800px"></Map>
 						</div>
 					</div>
 

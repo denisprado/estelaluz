@@ -174,11 +174,12 @@ export interface Work {
         id?: string | null;
       }[]
     | null;
+  category?: (number | null) | CategoryWork;
+  mapUrl?: string | null;
   coordenadas?: {
     longitude?: string | null;
     latitude?: string | null;
   };
-  category?: (number | null) | CategoryWork;
   updatedAt: string;
   createdAt: string;
 }
