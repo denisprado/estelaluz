@@ -43,7 +43,7 @@ export default async function Work({ params }: { params: { slug: string } }) {
 
 					<div className="grid grid-cols-12 justify-center w-full gap-4 md:gap-4 lg:gap-6">
 						<div className="col-span-full">
-							{serializeLexical({ nodes: description!.root?.children })}
+							{serializeLexical({ nodes: description!?.root?.children })}
 						</div>
 						{mapUrl && <div className={"col-span-full"}>
 							<Map work={work} height="800px"></Map>
