@@ -4,9 +4,9 @@ import { PageTitle } from '../PageTitle';
 
 const LoadingComponent = ({ type = 'cardList' }: { type?: 'cardList' | 'page' }) => {
 	return (
-		<div className="md:max-w-7xl flex flex-col self-center items-start justify-center w-full mt-8 gap-8">
+		<div role="status" className="md:max-w-7xl flex flex-col self-center items-start justify-center w-full mt-8 gap-8">
 			<PageTitle align='start'>
-				<p className='text-gray-300'>Carregando...</p>
+				<p className='text-gray-400 animate-pulse'>Carregando...</p>
 			</PageTitle>
 			<div className="w-full">
 				<div className="grid grid-cols-12 gap-4 w-full flex-wrap">

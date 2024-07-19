@@ -4,7 +4,6 @@ const colors = require("tailwindcss/colors");
 const config: Config = {
   content: [
     "./node_modules/flowbite-react/lib/**/*.js",
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./public/**/*.html",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
@@ -59,26 +58,7 @@ const config: Config = {
         foreground: "hsl(var(--card-foreground))",
       },
     },
-
-    keyframes: {
-      "accordion-down": {
-        from: {
-          height: "0",
-        },
-        to: {
-          height: "var(--radix-accordion-content-height)",
-        },
-      },
-      "accordion-up": {
-        from: {
-          height: "var(--radix-accordion-content-height)",
-        },
-        to: {
-          height: "0",
-        },
-      },
-    },
   },
-  plugins: [require("flowbite/plugin"), require("tailwindcss-animate")],
+  plugins: [require("flowbite/plugin")],
 };
 export default config;
