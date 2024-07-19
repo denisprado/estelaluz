@@ -10,7 +10,7 @@ const ProductCategories = (props: { productCategories: CategoryProduct[]; }) => 
 	const pathName = usePathname()
 	const [all, setAll] = useState('')
 	return (
-		<div className="flex flex-col sm:flex-row gap-4">
+		<div className="flex flex-row gap-4">
 			<Link href={'/adquira/categoria/todos'} className={classNames("uppercase font-bold hover:underline-offset-2 hover:underline", pathName === '/adquira/todos' && 'underline-offset-2 underline')}>todos</Link>
 			{props.productCategories.map(cat => {
 				const isActive = pathName === "/adquira/categoria/" + cat.slug
