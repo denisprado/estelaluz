@@ -47,7 +47,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
 		//   typeof image !== "number"
 		//     ? `https://s3.amazonaws.com/` + "estelaluz" + "/" + image?.filename!
 		//     : "/media/";
-		const src = typeof image !== "number" ? image?.filename! : "/media/";
+		const src = typeof image !== "number" ? image?.sizes?.widthFull?.filename! : "/media/";
 		return src;
 	}
 	return (
@@ -59,7 +59,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
 						return (
 							<div className="embla__slide" key={slide?.id!!}>
 								<div className="embla__slide__number">
-									<Image priority loader={imageLoader} src={src!} className="rounded-3xl w-full" fill style={{ objectFit: 'cover' }} alt={""}></Image>
+									<Image priority={true} loader={imageLoader} src={src!} className="rounded-3xl w-full" fill style={{ objectFit: 'cover' }} alt={""}></Image>
 								</div>
 							</div>
 						)

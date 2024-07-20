@@ -29,7 +29,7 @@ export const Media: CollectionConfig = {
         position: "centre",
       },
       {
-        name: "tablet",
+        name: "widthFull",
         width: 1024,
         // By specifying `undefined` or leaving a height undefined,
         // the image will be sized to a certain width,

@@ -16,6 +16,7 @@ export const Works: CollectionConfig = {
     {
       name: "sticky",
       type: "checkbox",
+      index: true,
     },
     {
       name: "description",

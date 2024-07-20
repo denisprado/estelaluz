@@ -103,7 +103,7 @@ export interface Media {
       filesize?: number | null;
       filename?: string | null;
     };
-    tablet?: {
+    widthFull?: {
       url?: string | null;
       width?: number | null;
       height?: number | null;
