@@ -61,7 +61,7 @@ export function Navbar({ menu }: { menu: ReactNode }) {
 				{menu}
 			</div>
 
-			<Button className="ml-auto">Adquira</Button>
+			<Button className="ml-auto"><Link href={"/adquira"}>Adquira</Link></Button>
 		</header>
 	)
 }
