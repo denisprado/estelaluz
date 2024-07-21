@@ -30,7 +30,7 @@ export function Navbar({ menu }: { menu: ReactNode }) {
 	return (
 		<header className="flex w-full h-20 shrink-0 items-center px-4 md:px-6">
 			<div className="flex items-center gap-6 w-full">
-				<Link href="#" className="flex items-center gap-2" prefetch={false}>
+				<Link href="/" className="flex items-center gap-2" prefetch={false}>
 					<Logo />
 				</Link>
 				<Sheet>
@@ -55,6 +55,10 @@ export function Navbar({ menu }: { menu: ReactNode }) {
 						</NavigationMenuList>
 					</NavigationMenu>
 				</div>
+			</div>
+
+			<div className="hidden lg:grid gap-4 py-6">
+				{menu}
 			</div>
 
 			<Button className="ml-auto">Adquira</Button>
