@@ -42,7 +42,10 @@ async function getData(cat: number) {
 export default buildConfig({
   cors: "*",
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL,
-  email: nodemailerAdapter(),
+  // email: nodemailerAdapter({
+  //   defaultFromAddress: "denisforigo@gmail.com",
+  //   defaultFromName: "Website",
+  // }),
   admin: {
     user: Users.slug,
     dateFormat: "dd/mm/yyyy",

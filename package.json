@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@googlemaps/js-api-loader": "^1.16.6",
+    "@nouance/payload-better-fields-plugin": "^1.4.1",
     "@payloadcms/db-postgres": "3.0.0-beta.68",
     "@payloadcms/email-nodemailer": "3.0.0-beta.68",
     "@payloadcms/next": "3.0.0-beta.68",

@@ -33,6 +33,9 @@ importers:
       '@googlemaps/js-api-loader':
         specifier: ^1.16.6
         version: 1.16.6
+      '@nouance/payload-better-fields-plugin':
+        specifier: ^1.4.1
+        version: 1.4.1(date-fns@3.3.1)(payload@3.0.0-beta.68(@swc/core@1.6.3(@swc/helpers@0.5.11))(@swc/types@0.1.8)(graphql@16.9.0)(typescript@5.4.5))(react-dom@19.0.0-rc-f994737d14-20240522(react@19.0.0-rc-f994737d14-20240522))(react@19.0.0-rc-f994737d14-20240522)
       '@payloadcms/db-postgres':
         specifier: 3.0.0-beta.68
         version: 3.0.0-beta.68(payload@3.0.0-beta.68(@swc/core@1.6.3(@swc/helpers@0.5.11))(@swc/types@0.1.8)(graphql@16.9.0)(typescript@5.4.5))(react@19.0.0-rc-f994737d14-20240522)(types-react@19.0.0-beta.2)
@@ -1304,6 +1307,11 @@ packages:
     resolution: {integrity: sha512-k74WKi7WmtRV847QWlY1ndg6XU1loeAyO9+NVoXrd7RL5lEjBtovp4CPZkifipBMBrZrZu2WwrQqkGrvLNZYpw==}
     engines: {node: '>=12.4.0'}
 
+  '@nouance/payload-better-fields-plugin@1.4.1':
+    resolution: {integrity: sha512-EZXXFnNocd46t9WXcgJjVR4LYVAzzuSyfrwKmFCo4t1xSlyfrK2EacqagvLWhOEpFOiF1fx0rPMh9VGI2seshg==}
+    peerDependencies:
+      payload: ^2.0.0
+
   '@payloadcms/db-postgres@3.0.0-beta.68':
     resolution: {integrity: sha512-7qqEJe1EdhGLnVn8wRlz/bOVLKQzN72oFencZ+3lx0xWh5lRZWYmCr+plsnQinjuDA1KKWfLR/FS4vBMGqItkw==}
     peerDependencies:
@@ -2271,6 +2279,9 @@ packages:
     resolution: {integrity: sha512-1rXeuUUiGGrykh+CeBdu5Ie7OJwinCgQY0bc7GCRxy5xVHy+moaqkpL/jqQq0MtQOeYcrqEz4abc5f0KtU7W4A==}
     engines: {node: '>=12.5.0'}
 
+  colord@2.9.3:
+    resolution: {integrity: sha512-jeC1axXpnb0/2nn/Y1LPuLdgXBLH7aDcHu4KEKfqw3CUhX7ZpfBSlPKyqXE6btIgEzfWtrX3/tyBCaCvXvMkOw==}
+
   colorette@2.0.20:
     resolution: {integrity: sha512-IfEDxwoWIjkeXL1eXcDiow4UbKjhLdq6/EuSVR9GMN7KVH3r9gQ83e73hsz1Nd1T3ijd5xv1wcWRYO+D6kCI2w==}
 
@@ -2348,6 +2359,11 @@ packages:
 
   dataloader@2.2.2:
     resolution: {integrity: sha512-8YnDaaf7N3k/q5HnTJVuzSyLETjoZjVmHc4AeKAzOvKHEFQKcn64OKBfzHYtE9zGjctNM7V9I0MfnUVLpi7M5g==}
+
+  date-fns-tz@2.0.1:
+    resolution: {integrity: sha512-fJCG3Pwx8HUoLhkepdsP7Z5RsucUi+ZBOxyM5d0ZZ6c4SdYustq0VMmOu6Wf7bli+yS/Jwp91TOCqn9jMcVrUA==}
+    peerDependencies:
+      date-fns: 2.x
 
   date-fns@3.3.1:
     resolution: {integrity: sha512-y8e109LYGgoQDveiEBD3DYXKba1jWf5BA8YU1FL5Tvm0BTdEfy54WLCwnuYWZNnzzvALy/QQ4Hov+Q9RVRv+Zw==}
@@ -3638,6 +3654,12 @@ packages:
       react: '>=15.6.2'
       react-dom: '>=15.6.2'
 
+  react-colorful@5.6.1:
+    resolution: {integrity: sha512-1exovf0uGTGyq5mXQT0zgQ80uvj2PCwvF8zY1RN9/vbJVSjSo3fsB/4L3ObbF7u70NduSiK4xu4Y6q1MHoUGEw==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+
   react-datepicker@6.9.0:
     resolution: {integrity: sha512-QTxuzeem7BUfVFWv+g5WuvzT0c5BPo+XTCNbMTZKSZQLU+cMMwSUHwspaxuIcDlwNcOH0tiJ+bh1fJ2yxOGYWA==}
     peerDependencies:
@@ -3686,6 +3708,12 @@ packages:
 
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
+
+  react-number-format@5.4.0:
+    resolution: {integrity: sha512-NWdICrqLhI7rAS8yUeLVd6Wr4cN7UjJ9IBTS0f/a9i7UB4x4Ti70kGnksBtZ7o4Z7YRbvCMMR/jQmkoOBa/4fg==}
+    peerDependencies:
+      react: ^0.14 || ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^0.14 || ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
 
   react-onclickoutside@6.13.1:
     resolution: {integrity: sha512-LdrrxK/Yh9zbBQdFbMTXPp3dTSN9B+9YJQucdDu3JNKRrbdU+H+/TVONJoWtOwy4II8Sqf1y/DTI6w/vGPYW0w==}
@@ -3896,6 +3924,10 @@ packages:
 
   slate@0.91.4:
     resolution: {integrity: sha512-aUJ3rpjrdi5SbJ5G1Qjr3arytfRkEStTmHjBfWq2A2Q8MybacIzkScSvGJjQkdTk3djCK9C9SEOt39sSeZFwTw==}
+
+  slugify@1.6.6:
+    resolution: {integrity: sha512-h+z7HKHYXj6wJU+AnS/+IH8Uh9fdcX1Lrhg1/VMdf9PwoBQXFcXiAdsy2tSK0P6gKwJLXp02r90ahUCqHk9rrw==}
+    engines: {node: '>=8.0.0'}
 
   sonic-boom@4.0.1:
     resolution: {integrity: sha512-hTSD/6JMLyT4r9zeof6UtuBDpjJ9sO08/nmS5djaA9eozT9oOlNdpXSnzcgj4FTqpk3nkLrs61l4gip9r1HCrQ==}
@@ -4186,6 +4218,9 @@ packages:
   uuid@9.0.1:
     resolution: {integrity: sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA==}
     hasBin: true
+
+  validate-color@2.2.4:
+    resolution: {integrity: sha512-Znolz+b6CwW6eBXYld7MFM3O7funcdyRfjKC/X9hqYV/0VcC5LB/L45mff7m3dIn9wdGdNOAQ/fybNuD5P/HDw==}
 
   web-streams-polyfill@3.3.3:
     resolution: {integrity: sha512-d2JWLCivmZYTSIoge9MsgFCZrt571BikcWGYkjC1khllbTeDlGqZ2D8vD8E/lJa8WGWbb7Plm8/XJYV7IJHZZw==}
@@ -5701,6 +5736,21 @@ snapshots:
     dependencies:
       '@nolyfill/shared': 1.0.28
 
+  '@nouance/payload-better-fields-plugin@1.4.1(date-fns@3.3.1)(payload@3.0.0-beta.68(@swc/core@1.6.3(@swc/helpers@0.5.11))(@swc/types@0.1.8)(graphql@16.9.0)(typescript@5.4.5))(react-dom@19.0.0-rc-f994737d14-20240522(react@19.0.0-rc-f994737d14-20240522))(react@19.0.0-rc-f994737d14-20240522)':
+    dependencies:
+      colord: 2.9.3
+      date-fns-tz: 2.0.1(date-fns@3.3.1)
+      payload: 3.0.0-beta.68(@swc/core@1.6.3(@swc/helpers@0.5.11))(@swc/types@0.1.8)(graphql@16.9.0)(typescript@5.4.5)
+      react-colorful: 5.6.1(react-dom@19.0.0-rc-f994737d14-20240522(react@19.0.0-rc-f994737d14-20240522))(react@19.0.0-rc-f994737d14-20240522)
+      react-number-format: 5.4.0(react-dom@19.0.0-rc-f994737d14-20240522(react@19.0.0-rc-f994737d14-20240522))(react@19.0.0-rc-f994737d14-20240522)
+      react-phone-number-input: 3.4.3(react-dom@19.0.0-rc-f994737d14-20240522(react@19.0.0-rc-f994737d14-20240522))(react@19.0.0-rc-f994737d14-20240522)
+      slugify: 1.6.6
+      validate-color: 2.2.4
+    transitivePeerDependencies:
+      - date-fns
+      - react
+      - react-dom
+
   '@payloadcms/db-postgres@3.0.0-beta.68(payload@3.0.0-beta.68(@swc/core@1.6.3(@swc/helpers@0.5.11))(@swc/types@0.1.8)(graphql@16.9.0)(typescript@5.4.5))(react@19.0.0-rc-f994737d14-20240522)(types-react@19.0.0-beta.2)':
     dependencies:
       '@libsql/client': 0.5.6
@@ -6823,6 +6873,8 @@ snapshots:
       color-convert: 2.0.1
       color-string: 1.9.1
 
+  colord@2.9.3: {}
+
   colorette@2.0.20: {}
 
   combined-stream@1.0.8:
@@ -6887,6 +6939,10 @@ snapshots:
   data-uri-to-buffer@4.0.1: {}
 
   dataloader@2.2.2: {}
+
+  date-fns-tz@2.0.1(date-fns@3.3.1):
+    dependencies:
+      date-fns: 3.3.1
 
   date-fns@3.3.1: {}
 
@@ -8251,6 +8307,11 @@ snapshots:
       react: 19.0.0-rc-f994737d14-20240522
       react-dom: 19.0.0-rc-f994737d14-20240522(react@19.0.0-rc-f994737d14-20240522)
 
+  react-colorful@5.6.1(react-dom@19.0.0-rc-f994737d14-20240522(react@19.0.0-rc-f994737d14-20240522))(react@19.0.0-rc-f994737d14-20240522):
+    dependencies:
+      react: 19.0.0-rc-f994737d14-20240522
+      react-dom: 19.0.0-rc-f994737d14-20240522(react@19.0.0-rc-f994737d14-20240522)
+
   react-datepicker@6.9.0(react-dom@19.0.0-rc-f994737d14-20240522(react@19.0.0-rc-f994737d14-20240522))(react@19.0.0-rc-f994737d14-20240522):
     dependencies:
       '@floating-ui/react': 0.26.17(react-dom@19.0.0-rc-f994737d14-20240522(react@19.0.0-rc-f994737d14-20240522))(react@19.0.0-rc-f994737d14-20240522)
@@ -8302,6 +8363,12 @@ snapshots:
       react: 19.0.0-rc-f994737d14-20240522
 
   react-is@16.13.1: {}
+
+  react-number-format@5.4.0(react-dom@19.0.0-rc-f994737d14-20240522(react@19.0.0-rc-f994737d14-20240522))(react@19.0.0-rc-f994737d14-20240522):
+    dependencies:
+      prop-types: 15.8.1
+      react: 19.0.0-rc-f994737d14-20240522
+      react-dom: 19.0.0-rc-f994737d14-20240522(react@19.0.0-rc-f994737d14-20240522)
 
   react-onclickoutside@6.13.1(react-dom@19.0.0-rc-f994737d14-20240522(react@19.0.0-rc-f994737d14-20240522))(react@19.0.0-rc-f994737d14-20240522):
     dependencies:
@@ -8547,6 +8614,8 @@ snapshots:
       immer: 9.0.21
       is-plain-object: 5.0.0
       tiny-warning: 1.0.3
+
+  slugify@1.6.6: {}
 
   sonic-boom@4.0.1:
     dependencies:
@@ -8820,6 +8889,8 @@ snapshots:
   uuid@10.0.0: {}
 
   uuid@9.0.1: {}
+
+  validate-color@2.2.4: {}
 
   web-streams-polyfill@3.3.3: {}
 
