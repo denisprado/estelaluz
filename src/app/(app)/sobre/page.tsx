@@ -11,11 +11,10 @@ import TextLink from "@/components/TextLink";
 
 async function getProfile(): Promise<Profile> {
 	const payload = await getPayloadHMR({ config })
-	const courses = await payload.find({
-		collection: 'profile',
-		limit: 1
+	const courses = await payload.findGlobal({
+		slug: 'profile',
 	})
-	return courses.docs[0] as unknown as Profile
+	return courses as unknown as Profile
 }
 
 const SobreHome = async () => {

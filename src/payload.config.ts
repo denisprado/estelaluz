@@ -20,7 +20,7 @@ import {
   Users,
   Works,
 } from "./collections";
-import { Profile } from "./collections/Profiles";
+import { Profile } from "./globals/Profiles";
 import Logo from "./components/Logo";
 
 const filename = fileURLToPath(import.meta.url);
@@ -86,8 +86,8 @@ export default buildConfig({
       collections: ["works"],
     },
   },
+  globals: [Profile],
   collections: [
-    Profile,
     Works,
     CategoryWork,
     Products,

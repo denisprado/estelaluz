@@ -1,10 +1,7 @@
-import { CollectionConfig } from "payload";
+import { GlobalConfig } from "payload";
 
-export const Profile: CollectionConfig = {
+export const Profile: GlobalConfig = {
   slug: "profile",
-  admin: {
-    useAsTitle: "name",
-  },
   fields: [
     {
       name: "image",
