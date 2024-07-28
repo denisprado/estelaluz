@@ -18,13 +18,12 @@ To read more about using these font, please visit the Next.js documentation:
 - App Directory: https://nextjs.org/docs/app/building-your-application/optimizing/fonts
 - Pages Directory: https://nextjs.org/docs/pages/building-your-application/optimizing/fonts
 **/
-import Link from "next/link"
-import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
-import { NavigationMenu, NavigationMenuList, NavigationMenuLink } from "@/components/ui/navigation-menu"
-import Logo from "../Logo"
-import MenuItems from "../MenuItems"
+import { NavigationMenu, NavigationMenuLink, NavigationMenuList } from "@/components/ui/navigation-menu"
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import Link from "next/link"
 import { JSX, ReactNode, SVGProps } from "react"
+import Logo from "../Logo"
 
 export function Navbar({ menu }: { menu: ReactNode }) {
 	return (
@@ -35,7 +34,7 @@ export function Navbar({ menu }: { menu: ReactNode }) {
 				</Link>
 				<Sheet>
 					<SheetTrigger asChild>
-						<Button variant="outline" size="icon" className="lg:hidden">
+						<Button variant="outline" size="icon" className="sm:hidden">
 							<MenuIcon className="h-6 w-6" />
 							<span className="sr-only">Toggle navigation menu</span>
 						</Button>
@@ -46,7 +45,7 @@ export function Navbar({ menu }: { menu: ReactNode }) {
 						</div>
 					</SheetContent>
 				</Sheet>
-				<div className="hidden lg:flex items-end gap-4">
+				<div className="hidden sm:flex items-end gap-4">
 					<NavigationMenu>
 						<NavigationMenuList>
 							<NavigationMenuLink asChild>
@@ -57,7 +56,7 @@ export function Navbar({ menu }: { menu: ReactNode }) {
 				</div>
 			</div>
 
-			<div className="hidden lg:grid gap-4 py-6">
+			<div className="hidden sm:grid gap-4 py-6">
 				{menu}
 			</div>
 

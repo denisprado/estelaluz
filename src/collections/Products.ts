@@ -3,14 +3,17 @@ import { CollectionConfig } from "payload";
 
 export const Products: CollectionConfig = {
   slug: "products",
+  labels: { singular: "Produto", plural: "Produtos" },
   admin: {
     useAsTitle: "title",
+    description: "Produtos",
   },
   fields: [
     {
       name: "title",
       type: "text",
       required: true,
+      label: "Título",
     },
     slug,
     {
@@ -18,10 +21,12 @@ export const Products: CollectionConfig = {
       fields: [
         {
           name: "description",
+          label: "Descrição",
           type: "richText",
         },
         {
           name: "technical_description",
+          label: "Descrição Técnica",
           type: "richText",
         },
       ],
@@ -31,6 +36,7 @@ export const Products: CollectionConfig = {
       fields: [
         {
           name: "price",
+          label: "Preço",
           type: "number",
         },
         { name: "stock", type: "number" },
@@ -38,6 +44,7 @@ export const Products: CollectionConfig = {
     },
     {
       name: "product_category",
+      label: "Categoria do Produto",
       type: "relationship",
       relationTo: "categoryProduct",
       required: true,
@@ -46,15 +53,18 @@ export const Products: CollectionConfig = {
       name: "work_product",
       type: "relationship",
       relationTo: "works",
+      label: "Trabalho relacionado",
       hasMany: true,
     },
 
     {
       name: "gallery",
       type: "array",
+      label: "Galeria de Imagens",
       fields: [
         {
           name: "image",
+          label: "Imagem",
           type: "upload",
           relationTo: "media",
           required: true,

@@ -1,12 +1,11 @@
-import type { Metadata } from "next";
-import { Montserrat, Lato } from "next/font/google";
-import "./globals.css";
-import "./embla.css";
 import Footer from "@/components/Footer";
-import FloatBtn from "@/components/WhatsAppBtn";
-import { Header } from "@/components/component/header";
 import MenuItems from "@/components/MenuItems";
+import FloatBtn from "@/components/WhatsAppBtn";
 import { Navbar } from "@/components/component/navbar";
+import type { Metadata } from "next";
+import { Lato, Montserrat } from "next/font/google";
+import "./embla.css";
+import "./globals.css";
 
 const montserrat = Montserrat({
 	subsets: ["latin-ext"],

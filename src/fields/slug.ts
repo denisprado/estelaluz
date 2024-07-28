@@ -5,6 +5,7 @@ const slug: Field = {
   name: "slug",
   type: "text",
   unique: true,
+  index: true,
   admin: {
     hidden: true, // hides the field from the admin panel
   },
