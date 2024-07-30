@@ -10,15 +10,15 @@ async function getPosts(cat: string, collection: string): Promise<Product[] | Pr
 	const posts = await payload.find({
 		collection: collection,
 		// where: {
-		// 	"product_category.slug": {
+		// 	"category.slug": {
 		// 		equals: cat ? cat : null,
 		// 	}
 		// },
 	})
-	//console.log(posts.docs[0]?.product_category!)
+	//console.log(posts.docs[0]?.category!)
 	const docs: Product[] = posts?.docs! as unknown as Product[]
 	const dataOfPost = cat !== 'todos' ? docs.filter((doc) => {
-		const productCategory: Product['product_category'] = doc.product_category as unknown as Product['product_category']
+		const productCategory: Product['category'] = doc.category as unknown as Product['category']
 		return (typeof productCategory !== 'number' && productCategory.slug === cat)
 	}) : docs
 
