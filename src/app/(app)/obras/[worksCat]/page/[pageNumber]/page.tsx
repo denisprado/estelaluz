@@ -14,7 +14,8 @@ import qs from 'qs'
 
 export const dynamic = 'force-static'
 export const revalidate = 600
-const LIMIT = 4
+const LIMIT = 8
+
 async function getPost(cat: string, collection: string, pageNumber: number): Promise<[WorkType[], PaginatedDocs<any>, (Record<string, unknown> & TypeWithID)]> {
 	const payload = await getPayloadHMR({ config })
 	console.log(cat)
