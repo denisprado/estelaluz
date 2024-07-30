@@ -14,9 +14,9 @@ export default async function ProductPage({ params }: { params: { slug: string }
 	const allProducts = await getPost(params.slug, 'products');
 	return (
 		allProducts.map(async (product: any) => {
-			const { title, description, product_category, price, technical_description } = product as Product;
+			const { title, description, category, price, technical_description } = product as Product;
 			const id = product?.id ? product?.id as number : null;
-			const cat = product_category && typeof product_category !== 'number' && product_category !== undefined && product_category !== null ? product_category : {} as CategoryProduct
+			const cat = category && typeof category !== 'number' && category !== undefined && category !== null ? category : {} as CategoryProduct
 			const allProductsExceptThis: Product[] = await getPost(params.slug, 'products', id, cat);
 			const gallery: Product['gallery'] = product?.gallery as Product['gallery'];
 			return (
@@ -51,7 +51,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
 							allProductsExceptThis.length > 0 && (
 								<PageContainer>
 									<div className="flex justify-start w-full pt-12 pb-6">
-										<p className="text-3xl">Outros Produtos na Categoria {typeof product_category !== 'number' ? product_category?.title! : ''}</p>
+										<p className="text-3xl">Outros Produtos na Categoria {typeof category !== 'number' ? category?.title! : ''}</p>
 									</div>
 									<div className="w-full">
 										<CardListContainer>
@@ -95,7 +95,7 @@ async function getPost(slug: string | null, collection: string, excludeProductId
 	const dataOfPost = data.docs.filter((doc) => doc.slug === slug)
 
 	const dataOfSameInCat = data.docs.filter((doc: Record<string, unknown> & TypeWithID | Product) => {
-		const cat = doc.product_category as CategoryWork
+		const cat = doc.category as CategoryWork
 		const isSameCat = cat?.id === category?.id!
 		return isSameCat
 	})
