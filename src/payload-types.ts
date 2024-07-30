@@ -195,7 +195,7 @@ export interface Product {
   } | null;
   price?: number | null;
   stock?: number | null;
-  product_category: number | CategoryProduct;
+  category: number | CategoryProduct;
   work_product?: (number | Work)[] | null;
   gallery?:
     | {

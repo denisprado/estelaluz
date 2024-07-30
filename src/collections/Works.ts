@@ -3,6 +3,10 @@ import { CollectionConfig } from "payload";
 
 export const Works: CollectionConfig = {
   slug: "works",
+  access: {
+    read: () => true,
+    create: () => true,
+  },
   labels: { singular: "Obra", plural: "Obras" },
   admin: {
     useAsTitle: "title",

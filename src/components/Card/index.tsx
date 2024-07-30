@@ -1,16 +1,25 @@
+
 import { getThumUrl, getUrl } from "@/helpers/functions";
 import imageLoader from "@/helpers/loader";
-import { Product, Work } from "@/payload-types";
+import { CategoryWork, Product, Work } from "@/payload-types";
 import Image from "next/image";
 import Link from "next/link";
 import TextLink from "../TextLink";
+import { getPayloadHMR } from "@payloadcms/next/utilities";
+import config from "@payload-config";
 
-const Card = ({ category, post }: { category?: string, post: Work | Product }) => {
+const Card = async ({ post }: { post: Work | Product }) => {
 
+	const cat = typeof post.category === 'number' ? post.category : post!.category!.id
+
+	const payload = await getPayloadHMR({ config })
+	const category = await payload.findByID({
+		collection: 'categoryWork',
+		id: cat
+	})
 
 	const src = getThumbSrc(post);
-	const url = category ? category + '/' + post.slug! : isProduct(post) ? '/adquira/' + post.slug! : post.slug!
-
+	const url = isProduct(post) ? '/adquira/' + post.slug! : '/obras/' + category.slug + "/" + post.slug!
 
 	return (
 		src! && <div className="flex flex-col col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 w-full">

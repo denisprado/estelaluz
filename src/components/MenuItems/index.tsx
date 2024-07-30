@@ -22,7 +22,7 @@ const MenuItems = async () => {
 			const title = cat.title
 			return (
 				<li key={cat.id}>
-					<TextLink url={`/${cat.slug}`} text={title.toLowerCase()}></TextLink>
+					<TextLink url={`/obras/${cat.slug}`} text={title.toLowerCase()}></TextLink>
 				</li>
 			)
 		})}

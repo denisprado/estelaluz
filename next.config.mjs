@@ -14,6 +14,12 @@ const nextConfig = {
 				destination: '/adquira/categoria/todos',
 				permanent: true,
 			},
+			{
+				source: '/obras/:worksCat',
+				destination: '/obras/:worksCat/page/1',
+				permanent: true,
+			},
+
 		]
 	},
 	images: {

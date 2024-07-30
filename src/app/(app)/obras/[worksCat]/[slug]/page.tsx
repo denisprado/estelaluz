@@ -1,24 +1,19 @@
 import Card from "@/components/Card";
 import EmblaCarousel from "@/components/EmblaCarousel";
-import { hasCoordinates } from "@/helpers/functions";
 import { CategoryWork, Work as WorkType } from "@/payload-types";
-import { getPayloadHMR } from "@payloadcms/next/utilities";
 import config from "@payload-config";
-
-import Map from '@/components/Map'
-import PageContainer from "@/components/PageContainer";
+import { getPayloadHMR } from "@payloadcms/next/utilities";
 import CardListContainer from "@/components/CardListContainer";
+import Map from '@/components/Map';
+import PageContainer from "@/components/PageContainer";
 import { PageTitle } from "@/components/PageTitle";
 import { serializeLexical } from "@/helpers/serialize";
-import classNames from "classnames";
 import { TypeWithID } from "payload";
 
 
-export default async function Work({ params }: { params: { slug: string } }) {
+export default async function Work({ params }: { params: { slug: string, worksCat: string } }) {
 
 	const allWorks = await getPost(params.slug, 'works');
-
-	console.log(allWorks[0]?.category!)
 
 	const cat = allWorks[0]?.category && typeof allWorks[0]?.category !== 'number' && allWorks[0]?.category !== undefined && allWorks[0]?.category !== null ? allWorks[0]?.category : {} as CategoryWork
 
@@ -26,7 +21,7 @@ export default async function Work({ params }: { params: { slug: string } }) {
 
 	return (
 
-		allWorks.map(async (work: any) => {
+		allWorks.map(async (work: WorkType) => {
 			const { title, description, technical_description, category, mapUrl } = work as WorkType;
 
 			const gallery: WorkType['gallery'] = work?.gallery as WorkType['gallery'];

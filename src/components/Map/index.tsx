@@ -13,7 +13,6 @@ const Map = ({ work, height = '800' }:
 	function extractMapParametersFromUrl(url: string) {
 		const regex = /@(.*?),(.*?),(?:3[ad],)?(\d+(\.\d+)?)?y,(\d+(\.\d+)?)h,(\d+(\.\d+)?)t/;
 		const matches = url.match(regex);
-		console.log("matches", matches)
 		if (matches) {
 			return {
 				lat: parseFloat(matches[1]),

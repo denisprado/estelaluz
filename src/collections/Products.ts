@@ -43,7 +43,7 @@ export const Products: CollectionConfig = {
       ],
     },
     {
-      name: "product_category",
+      name: "category",
       label: "Categoria do Produto",
       type: "relationship",
       relationTo: "categoryProduct",
