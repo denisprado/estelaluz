@@ -4,30 +4,6 @@ import PageContainer from "@/components/PageContainer";
 import { PageTitle } from "@/components/PageTitle";
 import ProductCategories from "@/components/ProductCategories";
 import { getCategories } from "@/helpers/functions";
-import { Product } from "@/payload-types";
-import { getPayloadHMR } from "@payloadcms/next/utilities";
-import config from "@payload-config";
-
-
-async function getPosts(cat: string, collection: string): Promise<Product[] | Product[]> {
-	const payload = await getPayloadHMR({ config })
-	const posts = await payload.find({
-		collection: collection,
-		// where: {
-		// 	"product_category.slug": {
-		// 		equals: cat ? cat : null,
-		// 	}
-		// },
-	})
-	//console.log(posts.docs[0]?.product_category!)
-	const docs: Product[] = posts.docs as unknown as Product[]
-	const dataOfPost = cat !== 'todos' ? docs.filter((doc) => {
-		const productCategory: Product['product_category'] = doc.product_category as unknown as Product['product_category']
-		return (typeof productCategory !== 'number' && productCategory.slug === cat)
-	}) : docs
-
-	return dataOfPost as unknown as Product[]
-}
 
 export default async function RootLayout({
 	children, params,
