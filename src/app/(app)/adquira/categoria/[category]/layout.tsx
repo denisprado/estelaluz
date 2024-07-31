@@ -6,12 +6,9 @@ import ProductCategories from "@/components/ProductCategories";
 import { getCategories } from "@/helpers/functions";
 
 export default async function RootLayout({
-	children, params,
+	children,
 }: Readonly<{
 	children: React.ReactNode;
-	params?: {
-		category?: string;
-	};
 }>) {
 	const productCategories = await getCategories('categoryProduct');
 	return (
