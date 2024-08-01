@@ -1,16 +1,15 @@
 
-import { CategoryWork, Work as WorkType } from "@/payload-types";
-import { getPayloadHMR } from "@payloadcms/next/utilities";
-import config from "@payload-config";
 import Card from '@/components/Card';
-import Loading from "../../loading";
-import PageContainer from "@/components/PageContainer";
 import CardListContainer from "@/components/CardListContainer";
+import PageContainer from "@/components/PageContainer";
 import { PageTitle } from "@/components/PageTitle";
-import { Pagination } from '@/components/Pagination'
+import { Pagination } from '@/components/Pagination';
+import { Work as WorkType } from "@/payload-types";
+import { default as config, default as configPromise } from "@payload-config";
+import { getPayloadHMR } from "@payloadcms/next/utilities";
 import { PaginatedDocs, TypeWithID } from "payload";
-import configPromise from '@payload-config'
-import qs from 'qs'
+import qs from 'qs';
+import Loading from "../../loading";
 
 export const dynamic = 'force-static'
 export const revalidate = 600
@@ -18,7 +17,6 @@ const LIMIT = 8
 
 async function getPost(cat: string, collection: string, pageNumber: number): Promise<[WorkType[], PaginatedDocs<any>, (Record<string, unknown> & TypeWithID)]> {
 	const payload = await getPayloadHMR({ config })
-	console.log(cat)
 	const category = await payload.find({
 		collection: 'categoryWork',
 	})

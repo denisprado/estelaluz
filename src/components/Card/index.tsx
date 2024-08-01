@@ -11,7 +11,6 @@ import config from "@payload-config";
 const Card = async ({ post }: { post: Work | Product }) => {
 
 	const cat = typeof post.category === 'number' ? post.category : post!.category!.id
-	console.log(cat)
 	const payload = await getPayloadHMR({ config })
 	const category = await payload.findByID({
 		collection: isProduct(post) ? 'categoryProduct' : 'categoryWork',

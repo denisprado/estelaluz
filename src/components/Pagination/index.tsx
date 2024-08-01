@@ -25,7 +25,7 @@ export const Pagination: React.FC<{
 
 	const hasExtraPrevPages = page - 1 > 1
 	const hasExtraNextPages = page + 1 < totalPages
-	console.log("category: ", category, "page: ", page, "totalPages: ", totalPages, "hasPrevPage: ", hasPrevPage, "hasNextPage: ", hasNextPage, "hasExtraPrevPages: ", hasExtraPrevPages, "hasExtraNextPages: ", hasExtraNextPages)
+
 
 	return (
 		<div className={cn('my-12', className)}>
